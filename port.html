@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>NEURAL NEXUS | DEVEN GOYAL</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e1fdff",
+                        "on-primary-container": "#006a71",
+                        "surface-container-highest": "#353534",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#313030",
+                        "primary-fixed": "#74f5ff",
+                        "secondary-container": "#0266ff",
+                        "on-tertiary-fixed-variant": "#74009f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-container": "#9b00d2",
+                        "tertiary-fixed": "#f8d8ff",
+                        "on-secondary-fixed-variant": "#003fa4",
+                        "on-background": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "outline": "#849495",
+                        "inverse-primary": "#00696f",
+                        "surface": "#131313",
+                        "surface-dim": "#131313",
+                        "secondary": "#b3c5ff",
+                        "primary-fixed-dim": "#00dbe7",
+                        "secondary-fixed": "#dae1ff",
+                        "on-primary": "#00363a",
+                        "tertiary-fixed-dim": "#ebb2ff",
+                        "outline-variant": "#3a494b",
+                        "on-primary-fixed-variant": "#004f54",
+                        "primary-container": "#00f2ff",
+                        "tertiary-container": "#f5ceff",
+                        "on-error": "#690005",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary": "#520071",
+                        "background": "#131313",
+                        "on-secondary": "#002b75",
+                        "on-surface-variant": "#b9cacb",
+                        "on-secondary-container": "#f9f7ff",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#fff5fc",
+                        "surface-bright": "#3a3939",
+                        "surface-tint": "#00dbe7",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed": "#320047",
+                        "on-secondary-fixed": "#001849",
+                        "on-primary-fixed": "#002022",
+                        "error-container": "#93000a"
+                    },
+                    borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                    fontFamily: {
+                        "headline-lg": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "system-log": ["JetBrains Mono"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["40px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "display-lg": ["72px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["18px", { lineHeight: "1.7", fontWeight: "400" }],
+                        "headline-lg-mobile": ["32px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "label-sm": ["12px", { lineHeight: "1.4", letterSpacing: "0.2em", fontWeight: "500" }],
+                        "system-log": ["14px", { lineHeight: "1.6", letterSpacing: "0.1em", fontWeight: "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        :root { scroll-behavior: smooth; }
+        html { scroll-snap-type: y proximity; scroll-padding-top: 0px; }
+        body { background-color: #0a0e17; overflow-x: hidden; }
+        .neural-grid { background-image: radial-gradient(circle at 2px 2px, rgba(0, 219, 231, 0.05) 1px, transparent 0); background-size: 40px 40px; }
+        .glass-panel { backdrop-filter: blur(12px); background: rgba(14, 14, 14, 0.7); border: 1px solid rgba(132, 148, 149, 0.2); }
+        .glow-cyan { text-shadow: 0 0 10px rgba(0, 219, 231, 0.8); }
+        .bloom-primary { box-shadow: 0 0 20px rgba(0, 219, 231, 0.4); }
+
+        aside.compact-nav { width: 80px; transition: width 0.3s ease; }
+        aside.compact-nav:hover { width: 240px; }
+        aside.compact-nav .nav-label { opacity: 0; transition: opacity 0.2s ease; white-space: nowrap; }
+        aside.compact-nav:hover .nav-label { opacity: 1; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .project-set { scroll-snap-align: start; scroll-margin-top: 80px; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 40px; transition: opacity 0.5s ease, transform 0.5s ease; }
+        .project-set.snap-active { opacity: 1; transform: translateY(0); }
+
+        /* Circular Collage */
+        .circular-collage { position: relative; width: 550px; height: 550px; display: flex; justify-content: center; align-items: center; margin: 0 auto; }
+        .collage-ring { position: absolute; width: 100%; height: 100%; border-radius: 50%; top: 0; left: 0; pointer-events: none; }
+        .ring-segment { position: absolute; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255, 255, 255, 0.8); box-shadow: 0 0 20px #00d4ff; transition: all 0.4s ease; pointer-events: auto; }
+        .ring-segment img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ring-segment:hover { border-color: #00f7ff; transform: scale(1.15) !important; z-index: 20 !important; box-shadow: 0 0 35px #00f7ff; }
+        .floating-avatar-circle { position: absolute; width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 4px solid #00d4ff; box-shadow: 0 0 50px #00d4ff; z-index: 10; animation: float 6s ease-in-out infinite; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .floating-avatar-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        @keyframes float { 0%,100% { transform: translate(-50%, -50%) translateY(0); } 50% { transform: translate(-50%, -50%) translateY(-20px); } }
+
+        @media (max-width: 1200px) { .circular-collage { width: 450px; height: 450px; } .ring-segment { width: 100px; height: 100px; } .floating-avatar-circle { width: 160px; height: 160px; } }
+        @media (max-width: 768px) { .circular-collage { width: 340px; height: 340px; } .ring-segment { width: 75px; height: 75px; border-width: 2px; } .floating-avatar-circle { width: 120px; height: 120px; border-width: 3px; } }
+
+        .typewriter-text { font-family: 'Hanken Grotesk', monospace; color: #00f7ff; text-shadow: 0 0 15px #00f7ff; font-weight: 600; }
+        .cursor { display: inline-block; width: 3px; background-color: #00f7ff; margin-left: 5px; animation: blink 1s infinite; height: 2.5rem; vertical-align: middle; }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        .boot-screen { z-index: 9999; transition: opacity 1s ease-out, visibility 1s; }
+        .hexagon-loader { width: 60px; height: 35px; border-left: 2px solid #00dbe7; border-right: 2px solid #00dbe7; position: relative; animation: rotate-hex 4s infinite linear; }
+        @keyframes rotate-hex { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .achievement-card { transition: all 0.4s ease; cursor: pointer; background: rgba(10, 20, 40, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 30px; }
+        .achievement-card:hover { transform: translateY(-8px); box-shadow: 0 0 30px rgba(0, 247, 255, 0.2); border-color: #00f7ff; }
+        .hologram-card { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; cursor: pointer; }
+        .hologram-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(0, 247, 255, 0.15); }
+
+        .patents-scroll-container { max-height: 420px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0, 219, 231, 0.4) transparent; padding-right: 8px; }
+        .patents-scroll-container::-webkit-scrollbar { width: 5px; }
+        .patents-scroll-container::-webkit-scrollbar-track { background: transparent; }
+        .patents-scroll-container::-webkit-scrollbar-thumb { background: rgba(0, 219, 231, 0.4); border-radius: 10px; }
+
+        /* Achievement Modal */
+        .achievement-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; z-index: 20000; visibility: hidden; opacity: 0; transition: all 0.3s ease; }
+        .achievement-modal.active { visibility: visible; opacity: 1; }
+        .achievement-modal-content { background: #131313; border: 1px solid #00dbe7; border-radius: 24px; max-width: 500px; width: 90%; padding: 20px; text-align: center; box-shadow: 0 0 40px rgba(0,219,231,0.3); }
+        .achievement-modal-content img { width: 100%; border-radius: 16px; margin-bottom: 20px; border: 1px solid rgba(0,219,231,0.3); }
+        .achievement-modal-content h3 { font-size: 1.5rem; font-weight: bold; color: white; margin-bottom: 12px; }
+        .achievement-modal-content p { color: #b9cacb; margin-bottom: 20px; }
+        .modal-close { background: rgba(255,255,255,0.1); border: 1px solid #00dbe7; padding: 8px 20px; border-radius: 40px; cursor: pointer; color: white; font-family: monospace; transition: all 0.2s; }
+        .modal-close:hover { background: #00dbe7; color: black; }
+
+        /* Enhanced Resume Section */
+        .resume-section { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; min-height: 85vh; overflow: hidden; background: linear-gradient(135deg, rgba(5, 8, 17, 0.95), rgba(10, 14, 23, 0.95)); border-radius: 32px; margin-bottom: 40px; box-shadow: 0 0 40px rgba(0, 212, 255, 0.15); }
+        .resume-container { perspective: 2000px; width: 380px; height: 480px; cursor: pointer; }
+        .envelope { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1); border-radius: 20px; }
+        .envelope.open { transform: rotateX(180deg); }
+        .envelope-front, .envelope-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; background: linear-gradient(145deg, #0c1222, #080c18); border: 2px solid #00d4ff; box-shadow: 0 0 30px rgba(0, 212, 255, 0.3); }
+        .envelope-front { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; }
+        .envelope-front i { font-size: 80px; color: #00d4ff; filter: drop-shadow(0 0 12px #00d4ff); animation: pulseGlow 2s ease-in-out infinite; }
+        @keyframes pulseGlow { 0%,100% { filter: drop-shadow(0 0 8px #00d4ff); } 50% { filter: drop-shadow(0 0 20px #00d4ff); } }
+        .envelope-front p { font-family: monospace; color: #fff; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; background: rgba(0, 212, 255, 0.2); padding: 8px 20px; border-radius: 30px; border: 1px solid #00d4ff; }
+        .envelope-back { transform: rotateX(180deg); background: linear-gradient(145deg, #0f1525, #0a0e1c); padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+        .letter-content { text-align: center; color: white; }
+        .letter-content h3 { font-size: 32px; font-weight: bold; margin-bottom: 12px; background: linear-gradient(135deg, #fff, #00d4ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .letter-content .subtitle { font-size: 14px; color: #00d4ff; margin-bottom: 24px; font-family: monospace; letter-spacing: 2px; }
+        .letter-content .bio { font-size: 13px; color: #aaa; margin-bottom: 28px; font-family: monospace; line-height: 1.6; }
+        .resume-btn-group { display: flex; gap: 12px; justify-content: center; }
+        .resume-btn { background: linear-gradient(90deg, #00d4ff, #0088cc); border: none; padding: 10px 20px; border-radius: 40px; color: white; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .resume-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #00d4ff; }
+        .resume-btn-outline { background: transparent; border: 1px solid #00d4ff; color: #00d4ff; }
+        .resume-btn-outline:hover { background: rgba(0,212,255,0.2); box-shadow: 0 0 15px #00d4ff; }
+        .resume-hint { font-size: 10px; color: #666; margin-top: 20px; font-family: monospace; text-align: center; }
+
+        /* DHRΔVΔN Voice Assistant Styles */
+        .dhravan-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
+        .dhravan-overlay.active { opacity: 1; pointer-events: auto; }
+        .dhravan-backdrop { position: fixed; inset: 0; backdrop-filter: blur(20px); background: rgba(10, 14, 23, 0.85); z-index: 9999; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+        .dhravan-backdrop.active { opacity: 1; pointer-events: auto; }
+        .dhravan-light-orb { position: fixed; bottom: -80px; right: -80px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(180, 220, 255, 0.6) 0%, rgba(0, 180, 240, 0.35) 30%, rgba(0, 100, 220, 0.12) 60%, transparent 70%); filter: blur(30px); z-index: 10001; pointer-events: none; opacity: 0; transition: opacity 0.6s ease; animation: orbPulse 2.5s ease-in-out infinite; }
+        .dhravan-light-orb.active { opacity: 1; }
+        @keyframes orbPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        .dhravan-interface { position: relative; z-index: 10002; width: 90%; max-width: 520px; background: rgba(18, 22, 35, 0.95); border: 1px solid rgba(0, 200, 240, 0.35); border-radius: 24px; padding: 40px 32px; text-align: center; backdrop-filter: blur(16px); box-shadow: 0 0 60px rgba(0, 180, 240, 0.25); transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .dhravan-overlay.active .dhravan-interface { transform: translateY(0); }
+        .dhravan-orb-icon { width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.9) 0%, rgba(140, 210, 255, 0.7) 30%, rgba(0, 130, 220, 0.5) 60%, rgba(0, 60, 140, 0.3) 100%); margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; animation: dhravanOrbPulse 2s ease-in-out infinite; box-shadow: 0 0 40px rgba(0, 180, 240, 0.5); cursor: pointer; transition: all 0.3s ease; }
+        .dhravan-orb-icon:hover { box-shadow: 0 0 60px rgba(0, 200, 255, 0.7); transform: scale(1.08); }
+        .dhravan-orb-icon.listening { animation: dhravanListening 0.6s ease-in-out infinite; box-shadow: 0 0 70px rgba(0, 220, 255, 0.9); }
+        @keyframes dhravanOrbPulse { 0%,100% { box-shadow: 0 0 40px rgba(0, 180, 240, 0.5); } 50% { box-shadow: 0 0 55px rgba(0, 200, 255, 0.7); } }
+        @keyframes dhravanListening { 0%,100% { transform: scale(1); box-shadow: 0 0 70px rgba(0, 220, 255, 0.9); } 50% { transform: scale(1.12); box-shadow: 0 0 90px rgba(0, 240, 255, 1); } }
+        .dhravan-status { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(180, 220, 240, 0.9); letter-spacing: 0.15em; min-height: 20px; }
+        .dhravan-waveform { display: flex; align-items: center; justify-content: center; gap: 4px; height: 40px; margin: 16px 0; }
+        .dhravan-waveform .bar { width: 5px; background: rgba(0, 200, 240, 0.7); border-radius: 3px; transition: height 0.15s ease; height: 8px; }
+        .dhravan-close-btn { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.05); color: #fff; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .dhravan-close-btn:hover { background: rgba(255, 255, 255, 0.15); border-color: #fff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+        .dhravan-voice-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; border-radius: 20px; border: 1px solid rgba(0, 200, 240, 0.5); background: rgba(0, 180, 240, 0.1); color: rgba(200, 230, 255, 0.9); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
+        .dhravan-voice-btn:hover { background: rgba(0, 200, 240, 0.25); border-color: rgba(0, 220, 255, 0.8); box-shadow: 0 0 20px rgba(0, 200, 240, 0.3); }
+        .dhravan-transcript { font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; color: rgba(200, 220, 240, 0.7); min-height: 20px; margin-top: 8px; font-style: italic; }
+
+        @media (max-width: 768px) { .project-set { scroll-margin-top: 60px; min-height: 90vh; } .resume-container { width: 300px; height: 420px; } }
+    </style>
+</head>
+<body class="font-body-md text-on-surface bg-background neural-grid">
+    <!-- BOOT SEQUENCE -->
+    <div class="boot-screen fixed inset-0 bg-background flex flex-col items-center justify-center" id="boot-sequence">
+        <div class="relative mb-12"><div class="hexagon-loader"></div><div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings:'FILL'1;">pentagon</span></div></div>
+        <div class="text-center space-y-4"><h2 class="font-label-sm text-label-sm tracking-[0.5em] text-primary">NEURAL NEXUS</h2><p class="font-system-log text-system-log text-on-surface-variant/60">DHRΔVΔN v2.084 — SYSTEM INITIALIZATION</p></div>
+        <div class="w-64 mt-12 space-y-2"><div class="flex justify-between font-system-log text-system-log text-primary-fixed-dim"><span>BOOT PROGRESS</span><span id="boot-percent">0%</span></div><div class="h-1 bg-surface-container-highest overflow-hidden"><div class="h-full bg-primary-container transition-all duration-300" id="boot-bar" style="width:0%"></div></div></div>
+        <div class="mt-8 w-96 glass-panel p-6 rounded-lg font-system-log text-system-log text-primary-fixed-dim/80 space-y-1" id="log-container"></div>
+    </div>
+
+    <!-- SIDE NAVIGATION -->
+    <aside class="fixed left-0 top-0 h-full compact-nav border-r border-outline-variant/30 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[4px_0_24px_rgba(0,0,0,0.5)] overflow-hidden">
+        <div class="px-6 mb-12"><div class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-lg">terminal</span></div></div>
+        <nav class="flex-1 flex flex-col gap-2">
+            <a class="flex items-center gap-6 py-4 px-6 text-primary bg-primary-container/10 border-l-4 border-primary shadow-[inset_8px_0_12px_-6px_rgba(0,219,231,0.3)] group transition-all duration-300" href="#home"><span class="material-symbols-outlined">home</span><span class="nav-label font-label-sm">Home</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#biometric"><span class="material-symbols-outlined">fingerprint</span><span class="nav-label">Profile</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#achievements"><span class="material-symbols-outlined">workspace_premium</span><span class="nav-label">Vault</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#innovation-archive"><span class="material-symbols-outlined">inventory_2</span><span class="nav-label">Archive</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#certifications"><span class="material-symbols-outlined">military_tech</span><span class="nav-label">Badges</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#endorsements"><span class="material-symbols-outlined">verified</span><span class="nav-label">Endorsements</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#resume"><span class="material-symbols-outlined">description</span><span class="nav-label">Resume</span></a>
+            <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#contact"><span class="material-symbols-outlined">alternate_email</span><span class="nav-label">Contact</span></a>
+        </nav>
+   <div class="px-6"><a href="patent.html" target="_blank" class="w-full py-4 border border-primary-fixed-dim/30 text-primary-fixed-dim font-label-sm tracking-widest hover:bg-primary-fixed-dim/10 hover:bloom-primary transition-all duration-300 text-xs block text-center">Publication</a></div>
+    </aside>
+
+    <main class="ml-20 md:ml-24 neural-grid min-h-screen">
+        <header class="fixed top-0 left-20 md:left-24 right-0 z-40 flex justify-between items-center px-8 py-8 bg-gradient-to-b from-background to-transparent pointer-events-none">
+            <div class="font-headline-lg text-primary uppercase tracking-[0.2em] drop-shadow-[0_0_10px_#00dbe7] pointer-events-auto text-lg md:text-2xl">DEVEN GOYAL</div>
+            <div class="flex gap-6 pointer-events-auto"><button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined">sensors</span></button><button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined">terminal</span></button></div>
+        </header>
+
+        <!-- HOME SECTION -->
+        <section class="min-h-screen flex items-center justify-center relative overflow-hidden px-8 md:px-24" id="home">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20"><div class="w-[800px] h-[800px] border border-primary-fixed-dim/20 rounded-full animate-pulse"></div><div class="absolute w-[600px] h-[600px] border border-tertiary-fixed-dim/20 rotate-45 animate-spin"></div></div>
+            <div class="home-container w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="home-content text-center lg:text-left">
+                    <h1 class="home-name text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-white via-primary to-primary-fixed-dim bg-clip-text text-transparent mb-4">Deven Goyal</h1>
+                    <div class="typewriter-container h-20 mb-8"><span class="typewriter-text text-3xl md:text-4xl" id="typewriter"></span><span class="cursor text-3xl">|</span></div>
+                    <div class="social-icons flex justify-center lg:justify-start gap-6 mb-10">
+                        <a href="https://www.linkedin.com/in/deven-goyal/" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Devengoyal885" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/DevenGoyal3091" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/deven_goyal.28/" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="home-buttons flex gap-6 justify-center lg:justify-start">
+                        <a href="#contact" class="btn btn-primary px-8 py-3 bg-primary-fixed-dim text-on-primary rounded-full font-bold shadow-lg hover:scale-105 hover:bg-primary-container transition-all duration-300 bloom-primary">Get In Touch</a>
+                        <a href="#innovation-archive" class="btn btn-secondary px-8 py-3 border-2 border-primary-fixed-dim text-primary-fixed-dim rounded-full font-semibold hover:bg-primary-fixed-dim/15 transition-all duration-300">View Projects</a>
+                    </div>
+                </div>
+                <div class="circular-collage mx-auto" id="circularCollage">
+                    <div class="collage-ring" id="collageRing">
+                        <div class="ring-segment"><img src="/photos/this.jpg" alt="College Life" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this2.jpg" alt="Team Project" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this3.jpeg" alt="Coding" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this4.jpeg" alt="Workshop" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this5.jpeg" alt="Award" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this6.jpeg" alt="Innovation" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this7.jpeg" alt="Networking" loading="eager"></div>
+                        <div class="ring-segment"><img src="/photos/this8.jpeg" alt="Research" loading="eager"></div>
+                    </div>
+                    <div class="floating-avatar-circle"><img src="/photos/Deven.png" alt="Deven Goyal" loading="eager"></div>
+                </div>
+            </div>
+            <div class="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-3xl animate-bounce cursor-pointer"><i class="fas fa-chevron-down"></i></div>
+        </section>
+
+        <!-- BIOMETRIC PROFILE -->
+        <section class="min-h-screen py-32 px-8 md:px-24" id="biometric"><div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center"><div class="space-y-12"><div><p class="font-system-log text-system-log text-primary-fixed-dim mb-4">ORIGIN_LOG: PROTOCOL_BETA</p><h2 class="font-display-lg text-headline-lg font-bold text-white uppercase leading-none">BIOMETRIC</h2><h2 class="font-display-lg text-headline-lg font-bold text-primary-fixed-dim uppercase leading-none glow-cyan">PROFILE</h2><div class="w-32 h-1 bg-primary-fixed-dim mt-6 shadow-[0_0_15px_#00dbe7]"></div></div><div class="space-y-8 font-body-md text-on-surface-variant/80 text-lg leading-relaxed"><p>Deven Goyal — creator, coder, and innovator passionate about blending AI with human-centric engineering. His journey defines optimizing complexity into elegant high-performance solutions. Soon to be one of the youngest engineers to graduate from Chandigarh University.</p><p>With a core objective centered on building next-gen neural interfaces and autonomous frameworks, he operates at the bleeding edge of innovation.</p></div><div class="grid grid-cols-2 gap-y-4"><p class="col-span-2 font-system-log text-system-log text-primary-fixed-dim">CORE_INTEL: STRENGTHS</p><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>PROBLEM SOLVING</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>CRITICAL THINKING</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>CREATIVITY</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>NEURAL DESIGN</span></div></div></div><div class="relative group"><div class="aspect-square glass-panel rounded-lg relative overflow-hidden p-12 flex flex-col items-center justify-center"><div class="absolute top-4 right-4 font-system-log text-[10px] text-primary-fixed-dim/40 z-10">SCAN_MODE: ACTIVE</div><div class="flex flex-col items-center justify-center"><div class="relative"><span class="material-symbols-outlined text-[120px] text-primary-fixed-dim/20 group-hover:text-primary-fixed-dim/40 transition-all duration-700">fingerprint</span><div class="absolute inset-0 flex items-center justify-center"><div class="w-48 h-48 border-2 border-primary-fixed-dim/30 rounded-full animate-ping"></div></div><div class="absolute inset-0 flex items-center justify-center"><div class="w-32 h-32 border border-primary-fixed-dim/15 rounded-full animate-pulse"></div></div></div><p class="font-system-log text-system-log text-on-surface-variant/40 mt-10">BIOMETRIC_SCAN_ACTIVE</p><p class="font-system-log text-[10px] text-primary-fixed-dim/50 mt-2">NEURAL_PATTERN_VERIFIED</p></div><div class="w-full max-w-xs h-1 bg-surface-container-highest mt-10 relative overflow-hidden"><div class="absolute top-0 left-0 h-full bg-primary-fixed-dim shadow-[0_0_10px_#00dbe7] animate-pulse" style="width:92%"></div></div><div class="flex gap-4 mt-6"><span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-ping"></span><span class="w-2 h-2 rounded-full bg-primary-fixed-dim/60 animate-ping" style="animation-delay:0.3s"></span><span class="w-2 h-2 rounded-full bg-primary-fixed-dim/30 animate-ping" style="animation-delay:0.6s"></span></div></div></div></div></section>
+
+        <!-- ACHIEVEMENT VAULT -->
+        <section class="py-32 px-8 md:px-24 bg-surface-container-lowest/30" id="achievements">
+            <div class="max-w-7xl mx-auto"><h2 class="font-headline-lg text-headline-lg text-white text-center mb-16">ACHIEVEMENT VAULT</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="achievements-grid"></div></div>
+        </section>
+
+        <!-- INNOVATION ARCHIVE -->
+        <section class="min-h-screen py-32 px-8 md:px-24" id="innovation-archive">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16"><p class="font-system-log text-system-log text-primary-fixed-dim mb-2">— REPOSITORY V4.0.2</p><h2 class="font-display-lg text-3xl md:text-5xl text-white font-bold uppercase">INNOVATION <span class="text-primary-fixed-dim glow-cyan">ARCHIVE</span></h2></div>
+                <!-- PROJECT SET 1 -->
+                <div class="project-set" data-project-set="1">
+                    <p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_01</p>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://bharat-intelligence-delta.vercel.app/">
+                            <div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative"><img class="w-full h-full object-cover rounded-lg border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZhlD1topQnq4hiKwePo_XEFqNj1neZ2UAH6jWsmgocdaYtXsseELqbLc10X38Pg00CPCp7q4mbO3MMX7zQnqlRKW0-adbe0oito2_g3rwwbGXZoz1ivqwe1iBZgoUi1V8opPxEtP-D0QBdZz3q0RxYxzs1P7PxJXr5B46TfwCdmvxHM967K7AL_5C6r5CriiyhwnGGuEbFRpFpY9bXUuoMN44qRRdQK_n31FBtQgCtRwFZ3-RdrUhxprAwYlA-_NGbgvDq4JfcGm" alt="Bharat Intelligence" loading="lazy"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-primary"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-secondary-container bg-secondary-container/10 px-3 py-1 rounded-full text-xs">MISSION MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Bharat Intelligence</h3><p class="font-body-md text-on-surface-variant mb-6">A localized Large Language Model framework engineered for cultural linguistic nuances and sovereign data integrity.</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-primary text-xs flex items-center gap-2"><span class="w-2 h-2 bg-primary animate-ping rounded-full"></span> OPERATIONAL</p></div><div><p class="text-xs text-outline">PRIORITY</p><p class="text-primary text-xs">OMEGA-LEVEL</p></div></div></div></div>
+                        </div>
+                        <div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="	https://github.com/Devengoyal885/MailIQ"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary">mail_lock</span></div><span class="text-[10px] text-primary/30">MODULE: SYNC_04</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">MailIQ</h3><p class="font-body-md text-on-surface-variant">Predictive communication synthesizer that filters cognitive noise and prioritizes neural-intent responses.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-primary w-[85%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>SYNCHRONIZATION</span><span>85%</span></div></div></div>
+                        <div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://github.com/Devengoyal885/Early-Detection-of-Neurological-Disorder-"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-error">neurology</span><h3 class="font-headline-lg text-headline-lg text-primary">Neuro-Scan Alpha</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Deep learning architecture for early-stage neurological disorder detection through gaze tracking and micro-expression analysis.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">PYTHON</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">TENSORFLOW</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">BIO-METRICS</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">REAL-TIME TELEMETRY</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">ACCURACY</span><span class="text-primary">99.4%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">LATENCY</span><span class="text-primary">12ms</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">SCAN_DEPTH</span><span class="text-primary">LAYER_07</span></div></div></div></div></div>
+                    </div>
+                </div>
+                <!-- PROJECT SET 2 -->
+                <div class="project-set" data-project-set="2">
+                    <p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_02</p>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://roadwatchai.netlify.app/"><div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative bg-gradient-to-br from-blue-900/40 to-teal-900/40 rounded-lg flex items-center justify-center border border-primary/20"><span class="material-symbols-outlined text-[80px] text-primary-fixed-dim/40">Road</span><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-green-400"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-green-400 bg-green-400/10 px-3 py-1 rounded-full text-xs">Location MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Roadwatch Ai</h3><p class="font-body-md text-on-surface-variant mb-6"> Real-time road anomaly detection, traffic monitoring, and emergency routing using computer vision & edge AI for smarter city infrastructure</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-green-400 text-xs flex items-center gap-2"><span class="w-2 h-2 bg-green-400 animate-ping rounded-full"></span> ACTIVE</p></div></div></div></div></div>
+                        <div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://vendorhub-indol.vercel.app/"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-amber-400/10 flex items-center justify-center"><span class="material-symbols-outlined text-amber-400">finance_chip</span></div><span class="text-[10px] text-primary/30">MODULE: FIN_09</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">VendorHub</h3><p class="font-body-md text-on-surface-variant">Hyperlocal multi-vendor marketplace platform connecting local sellers with buyers through an intelligent discovery and management system.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-amber-400 w-[72%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>COMPLETION</span><span>72%</span></div></div></div>
+                        <div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://github.com/Devengoyal885/LowLightVision_ArcLight_DivyaVerma"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-yellow-400">electric_bolt</span><h3 class="font-headline-lg text-headline-lg text-primary">Low Light Vision</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Real-time underwater image enhancement and color correction using deep learning for improved visibility in murky aquatic conditions.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">IOT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">MQTT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">REACT</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">DEPLOYMENT STATS</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">NODES</span><span class="text-yellow-400">1,200+</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">UPTIME</span><span class="text-yellow-400">99.97%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">EFFICIENCY</span><span class="text-yellow-400">94%</span></div></div></div></div></div>
+                    </div>
+                </div>
+                <div class="text-center mb-16" id="moreProjectsIndicator"><p class="font-system-log text-system-log text-primary-fixed-dim/50 animate-pulse"><span class="material-symbols-outlined align-middle">expand_more</span> SCROLL TO REVEAL MORE PROJECTS <span class="material-symbols-outlined align-middle">expand_more</span></p></div>
+                <!-- PUBLISHED PATENTS -->
+                <div class="mt-12"><div class="flex items-center gap-6 mb-8"><h3 class="font-display-lg text-2xl text-white uppercase">PUBLISHED PATENTS</h3><div class="h-px bg-outline-variant/30 flex-grow"></div><span class="font-system-log text-xs text-outline">INTELLECTUAL_PROPERTY_LOG</span></div><div class="patents-scroll-container" id="patentsScrollContainer"><div class="space-y-4" id="patents-list"></div></div><p class="font-system-log text-[10px] text-primary-fixed-dim/40 mt-4 text-right"><span class="material-symbols-outlined text-xs align-middle">swipe_vertical</span> SCROLL FOR MORE PATENTS</p></div>
+            </div>
+        </section>
+
+        <!-- SYSTEM CERTIFICATIONS -->
+        <section class="py-32 overflow-hidden bg-background" id="certifications"><div class="px-8 md:px-24 mb-16"><h2 class="font-headline-lg text-headline-lg text-white text-center">SYSTEM CERTIFICATIONS</h2></div><div class="flex gap-8 animate-marquee whitespace-nowrap py-12" id="cert-marquee"></div></section>
+
+        <!-- ENDORSEMENTS -->
+        <section class="py-32 px-8 md:px-24 bg-surface-container-lowest overflow-hidden" id="endorsements"><div class="max-w-7xl mx-auto mb-16"><p class="font-mono text-[10px] text-primary tracking-[0.3em]">VERIFIED FEEDBACK</p><h2 class="text-4xl md:text-5xl font-bold text-white">SYSTEM ENDORSEMENTS</h2></div><div class="relative w-full overflow-hidden"><div class="animate-marquee gap-8 flex" id="endorsements-slider"></div></div></section>
+
+        <!-- ENHANCED RESUME SECTION -->
+        <section class="py-16 px-8 md:px-24" id="resume">
+            <div class="resume-section">
+                <div class="resume-container" id="resumeEnvelope">
+                    <div class="envelope" id="envelopeInner">
+                        <div class="envelope-front">
+                            <i class="fas fa-envelope"></i>
+                            <p>OPEN LETTER</p>
+                            <p style="font-size: 10px; letter-spacing: 1px;">click to reveal</p>
+                        </div>
+                        <div class="envelope-back">
+                            <div class="letter-content">
+                                <h3>DEVEN GOYAL</h3>
+                                <div class="subtitle">Full Stack Developer | AI Enthusiast | Innovator</div>
+                                <div class="bio">B.Tech CSE @ Chandigarh University | Patent Holder | Hackathon Winner</div>
+                                <div class="resume-btn-group">
+                                    <button class="resume-btn" id="viewResumeBtn">📄 VIEW PDF</button>
+                                    <button class="resume-btn resume-btn-outline" id="downloadResumeBtn">⬇ DOWNLOAD</button>
+                                </div>
+                                <p class="resume-hint">click envelope again to close</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="min-h-screen py-32 px-8 md:px-24 flex flex-col items-center justify-center text-center relative overflow-hidden" id="contact">
+            <div class="absolute inset-0 z-0 pointer-events-none" id="neural-particles"></div>
+            <div class="relative z-10 space-y-12 max-w-3xl"><h2 class="font-display-lg text-4xl md:text-6xl text-white font-bold leading-tight">INITIATE <span class="text-primary-fixed-dim glow-cyan">TRANSMISSION</span></h2><p class="font-body-md text-on-surface-variant/60 text-xl">The Neural Nexus is always seeking synergistic connections with fellow innovators.</p><div class="flex flex-wrap justify-center gap-8"><a href="https://github.com/Devengoyal885" target="_blank" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center group-hover:border-primary-fixed-dim transition-all"><span class="material-symbols-outlined text-white text-3xl">terminal</span></div><span class="text-[10px] tracking-widest">GitHub</span></a><a href="https://www.linkedin.com/in/deven-goyal/" target="_blank" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-white text-3xl">hub</span></div><span class="text-[10px] tracking-widest">LinkedIn</span></a><a href="mailto:devenxcelerate@gmail.com" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-white text-3xl">alternate_email</span></div><span class="text-[10px] tracking-widest">Email</span></a></div><div class="pt-24"><h3 class="font-headline-lg text-2xl text-white tracking-[0.4em] mb-4">THANK YOU FOR ENTERING THE NEURAL NEXUS</h3><p class="font-system-log text-[10px] text-primary-fixed-dim">CONNECTION_TERMINATED // 0x000000</p></div></div>
+        </section>
+
+        <footer class="fixed bottom-0 left-20 md:left-24 right-0 z-40 flex justify-between items-center px-8 py-4 bg-surface-container-lowest/50 backdrop-blur-md border-t border-outline-variant/10 pointer-events-none"><div class="font-system-log text-system-log text-primary-fixed-dim uppercase text-xs">SYSTEM STATUS: OPTIMAL | KERNEL: 0xF0492A_DHRAVAN_V2.0</div><div class="flex gap-8"><span class="text-[10px] text-outline">ARCHIVE_DEPTH</span><span class="text-[10px] text-outline">COMPUTE_LOAD</span><span class="text-[10px] text-outline">UPTIME_99.999%</span></div></footer>
+    </main>
+
+    <!-- Achievement Modal -->
+    <div class="achievement-modal" id="achievementModal"><div class="achievement-modal-content"><img id="modalAchievementImage" src="" alt="Achievement"><h3 id="modalAchievementTitle"></h3><p id="modalAchievementDesc"></p><button class="modal-close" id="closeModalBtn">Close</button></div></div>
+
+    <!-- DHRΔVΔN BUTTON & INTERFACE -->
+    <button class="fixed bottom-8 right-8 z-50 w-16 h-16 glass-panel rounded-full bloom-primary flex items-center justify-center hover:scale-110 transition-all duration-300 group" id="dhravanTriggerBtn" title="Activate DHRΔVΔN Voice Assistant"><span class="material-symbols-outlined text-primary text-2xl group-hover:text-white transition-colors">smart_toy</span><span class="absolute -top-1 -right-1 w-4 h-4 bg-primary-fixed-dim rounded-full animate-ping"></span></button>
+    <div class="dhravan-backdrop" id="dhravanBackdrop"></div>
+    <div class="dhravan-light-orb" id="dhravanLightOrb"></div>
+    <div class="dhravan-overlay" id="dhravanOverlay">
+        <div class="dhravan-interface" id="dhravanInterface">
+            <button class="dhravan-close-btn" id="dhravanCloseBtn">✕</button>
+            <p class="font-system-log text-[10px] text-primary-fixed-dim/60 tracking-[0.3em] mb-4">DHRΔVΔN v2.084</p>
+            <div class="dhravan-orb-icon" id="dhravanOrbIcon"><span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL'1;">psychology</span></div>
+            <p class="dhravan-status" id="dhravanStatus">TAP THE ORB TO SPEAK</p>
+            <p class="dhravan-transcript" id="dhravanTranscript"></p>
+            <div class="dhravan-waveform" id="dhravanWaveform"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <button class="dhravan-voice-btn" id="dhravanManualListenBtn"><span class="material-symbols-outlined text-xs align-middle">mic</span> TAP TO SPEAK</button>
+            <p class="font-system-log text-[9px] text-on-surface-variant/25 mt-3" id="dhravanHint">Ask about Deven's skills, projects, or achievements</p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ============ BOOT SEQUENCE ============
+            const bootLog = ["> NEURAL CORE BOOT SEQUENCE INITIATED", "> Loading quantum memory banks... OK", "> Calibrating synaptic pathways... OK", "> DHRΔVΔN neural matrix online... OK", "> Establishing nexus connection... OK", "> Decrypting innovation matrix... OK", "> Achievement vault unlocked... OK", "> Digital universe mapping... 98%", "> ALL SYSTEMS NOMINAL — WELCOME"];
+            const logContainer = document.getElementById('log-container');
+            const bootBar = document.getElementById('boot-bar');
+            const bootPercent = document.getElementById('boot-percent');
+            const bootScreen = document.getElementById('boot-sequence');
+            let progress = 0, logIndex = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 5;
+                if (progress >= 100) { progress = 100; clearInterval(interval); setTimeout(() => { bootScreen.style.opacity = '0'; bootScreen.style.visibility = 'hidden'; document.body.style.overflow = 'auto'; }, 1000); }
+                bootBar.style.width = progress + '%';
+                bootPercent.innerText = Math.floor(progress) + '%';
+                if (logIndex < bootLog.length && progress > (logIndex + 1) * (100 / bootLog.length)) { const line = document.createElement('div'); line.innerText = bootLog[logIndex]; logContainer.appendChild(line); logIndex++; }
+            }, 100);
+
+            // ============ DATA ============
+            const achievementsData = [
+                { title: "First position in Hackathon @IIT ROPAR ", desc: "Secure First position in National level hackathon Ai for social good organized by IIT Ropar ", image: "/photos/IIT ropar.jpg", icon: "fa-building" },
+                { title: "First Position in Stack Sprint 1.0 Hackathon", desc: "Eligible for second level in International olympiad of mathematics organized by silverzone ", image: "/photos/Stack.jpeg", icon: "fa-certificate" },
+                { title: "12th Position in Intellactathon", desc: "Secure 12 position in Intellactathon a university level patent based competition  ", image: "/photos/intellactathon.jpg", icon: "fa-trophy" },
+                { title: "IOM rank 418", desc: "Eligible for second level in International olympiad of mathematics organized by silverzone ", image: "/photos/math-olympiad.jpg", icon: "fa-trophy" },
+                { title: "2nd prize in photograph day", desc: "Won 2nd place in a photography competition.", image: "/photos/Photograph.jpeg", icon: "fa-award" },
+                { title: "Acheievers award 2026 ", desc: " Received achievers award for securing 1st position in Hackathon organized by IIT Ropar ", image: "/photos/achievers.jpeg", icon: "fa-star" },
+                { title: "Under top 20 in enigma quest", desc: "Surpass over 100 students in Enigma quest organize by Brainstromers Club.", image: "/photos/enigma.jpeg", icon: "fa-graduation-cap" },
+                { title: "2 time award winner in group singing competition", desc: "Participated in district level singing competion organized in Bal Bhawan Jind", image: "/photos/singing.jpg", icon: "fa-user-tie" },
+                { title: "Runner up in Peace of code Hackathon IIT Ropar", desc: "Secure Runner up position in Peace of code Hackathon organized by IIT Ropar ", image: "/photos/peace.jpeg", icon: "fa-moon" }
+            ];
+            const patents = [
+                { id: "#202511122602", title: "ConneCX : Smart Storage Device with Network Storage Capability", desc: "Advanced smart storage ecosystem with secure network-based data access and intelligent synchronization.", status: "VERIFIED" },
+                { id: "#202611020405", title: "Energy Distribution and Regeneration System", desc: "Innovative system for intelligent power distribution, regenerative recovery, and adaptive energy management.", status: "VERIFIED" },
+                { id: "#202611065622", title: "Fan-less Auto-Cooling Laptop Stand Using Passive Thermal Management", desc: "Passive thermal dissipation laptop stand engineered for silent and efficient cooling performance.", status: "VERIFIED" },
+                { id: "#202511126806", title: "Intelligent Dustbin System for Waste Sorting, Hygienic Processing and Optimized Collection Routing", desc: "AI-powered waste management system with automated segregation and optimized collection routing.", status: "VERIFIED" },
+                { id: "#202611021600", title: "Kinetic Neuro-Adaptive Footwear (KNAF): Intelligent Energy-Harvesting and Emotion-Synchronized Smart Shoes for Human Neuro-Energetic Optimization", desc: "Smart footwear integrating kinetic energy harvesting, adaptive sensing, and intelligent mobility analytics.", status: "VERIFIED" },
+                { id: "#202511132517", title: "Lumo Intelligence : Smart Light Ventilation and Mobile Detection System", desc: "Intelligent automation system combining smart lighting, ventilation control, and mobile-based occupancy detection.", status: "VERIFIED" },
+                { id: "#202611007559", title: "Smart Tire with Integrated Auto-Braking, Energy Generation, Balance Control, and Speed Limiting System", desc: "Advanced smart tire featuring automatic braking, energy generation, and adaptive balance control.", status: "VERIFIED" }
+            ];
+              const certs = [
+    "FULL_STACK_ENGINEERING_PRO",
+    "AI_RESEARCH_SPECIALIST",
+    "PATENT_INNOVATOR_CERTIFIED",
+    "CLOUD_COMPUTING_ENGINEER",
+    "AWS_SOLUTIONS_ARCHITECT",
+    "ADVANCED_WEB_ARCHITECT",
+    "HACKATHON_CHAMPION_SERIES",
+    "SOFTWARE_INNOVATION_EXPERT",
+    "MERN_STACK_MASTERY",
+    "NEXTJS_APPLICATION_ENGINEER",
+    "ARTIFICIAL_INTELLIGENCE_PRO",
+    "TECHNICAL_RESEARCH_FELLOW",
+    "SYSTEM_DESIGN_ASSOCIATE",
+    "OPEN_SOURCE_CONTRIBUTOR",
+    "DATA_STRUCTURES_EXPERT",
+    "PROBLEM_SOLVING_ELITE",
+    "DEVOPS_FOUNDATION_CERTIFIED",
+    "PATENT_RESEARCH_ASSOCIATE",
+    "MACHINE_LEARNING_PRACTITIONER",
+    "GENAI_APPLICATION_DEVELOPER"
+];
+const endorsements = [
+    {
+        name: "Abhilasha Nanda",
+        title: "Assistant Professor • IIT Ropar",
+        text: "Deven demonstrated impressive technical knowledge, strong problem-solving ability, and a research-oriented mindset. He quickly analyzes challenges, explores innovative solutions, and effectively applies research to achieve practical outcomes under tight deadlines."
+    },
+    {
+        name: "Nishant Malhotra",
+        title: "AI Summer Resident • IIM Ahmedabad",
+        text: "Deven showcased strong technical understanding, creativity, and dedication toward problem-solving. His research skills, quick learning ability, and confidence in working on innovative ideas make him a promising developer and researcher."
+    },
+    {
+        name: "Aditya Singh",
+        title: "Programmer & DSA Enthusiast",
+        text: "An outstanding teammate with strong leadership and collaboration skills. Deven consistently contributes technical expertise, research acumen, and reliability, helping teams stay focused and deliver successful outcomes."
+    },
+    {
+        name: "Dr. Vijay Mohan Shrimal",
+        title: "Associate Professor • Chandigarh University",
+        text: "Deven stands out for his technical expertise, dedication, and innovative mindset. His involvement in projects, hackathons, and patent filings reflects his commitment to creating impactful real-world solutions."
+    },
+    {
+        name: "Heet Sheth",
+        title: "C++ Developer • Ex-Intel Intern",
+        text: "Deven is persistent, hardworking, and highly proactive in learning new technologies. His ability to solve practical developer challenges and perform under pressure demonstrates strong engineering potential."
+    },
+    {
+        name: "Dr. Arbaaz Khan",
+        title: "Scientific Editor & Research Mentor",
+        text: "A talented and disciplined student with exceptional commitment to projects and extracurricular activities. Deven combines passion, punctuality, and determination, making him a valuable asset to any organization."
+    },
+    {
+        name: "Yash Jain",
+        title: "Student • Navar Rachna Educational Institutions",
+        text: "Deven consistently demonstrates professionalism, technical excellence, and a strong work ethic. His collaborative approach, problem-solving ability, and eagerness to learn set him apart from his peers."
+    },
+    {
+        name: "Dr. Ankit Garg",
+        title: "Faculty Advisor • Chandigarh University",
+        text: "A sincere and dedicated student with excellent academic attitude and analytical thinking skills. Deven frequently generates innovative ideas and approaches engineering challenges with creativity and logic."
+    },
+    {
+        name: "Ridhi Bansal",
+        title: "Frontend Web Developer",
+        text: "Working with Deven on patent-related projects highlighted his dedication, deep research capabilities, and strong problem-solving skills. His contributions consistently improved the quality of team outcomes."
+    },
+    {
+        name: "Deepti Sharma",
+        title: "Program Leader • Cloud Computing & DevOps",
+        text: "Deven is an exceptional researcher with a strong innovation mindset. His ability to identify opportunities where others see obstacles led to impactful research contributions, including successful patent work."
+    },
+    {
+        name: "Sushant Kumar",
+        title: "Full-Stack Developer • Chandigarh University",
+        text: "A dependable and technically skilled teammate who brings clarity and structure to every project. Deven consistently demonstrates initiative, teamwork, and a strong problem-solving mindset."
+    },
+    {
+        name: "Utkrisht Utpal",
+        title: "Full-Stack Developer",
+        text: "Deven possesses excellent web development skills, technical clarity, and an innovative approach to problem-solving. His reliability and collaborative nature make him an exceptional project partner."
+    },
+    {
+        name: "Taniya Goyal",
+        title: "DST INSPIRE Scholar",
+        text: "Deven is highly dedicated, quick to learn, and skilled in AI and emerging technologies. His practical application of knowledge, innovative thinking, and commitment to continuous growth make him a valuable technical professional."
+    },
+    {
+        name: "Rithish Pranav V",
+        title: "Full Stack Developer • Cloud Computing",
+        text: "Deven combines strong AI expertise with exceptional work ethic and professionalism. Beyond technical skills, his honesty, teamwork, and determination make him someone organizations can rely upon."
+    }
+];
+
+            // Render Functions
+            function renderAchievements() {
+                const grid = document.getElementById('achievements-grid');
+                achievementsData.forEach((a, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'achievement-card';
+                    card.dataset.achievementIndex = idx;
+                    card.innerHTML = `<div class="text-3xl text-primary mb-3"><i class="fas ${a.icon}"></i></div><h3 class="font-headline-lg text-xl text-white mb-2">${a.title}</h3><p class="text-sm text-on-surface-variant/70">${a.desc}</p>`;
+                    grid.appendChild(card);
+                });
+            }
+
+            // Modal logic
+            const modal = document.getElementById('achievementModal');
+            const modalImg = document.getElementById('modalAchievementImage');
+            const modalTitle = document.getElementById('modalAchievementTitle');
+            const modalDesc = document.getElementById('modalAchievementDesc');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            function openAchievementModal(index) {
+                const a = achievementsData[index];
+                if (a) { modalImg.src = a.image; modalTitle.innerText = a.title; modalDesc.innerText = a.desc; modal.classList.add('active'); }
+            }
+            function closeModal() { modal.classList.remove('active'); }
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.getElementById('achievements-grid')?.addEventListener('click', (e) => {
+                const card = e.target.closest('.achievement-card');
+                if (card && card.dataset.achievementIndex !== undefined) openAchievementModal(parseInt(card.dataset.achievementIndex));
+            });
+
+            function renderPatents() {
+                const container = document.getElementById('patents-list');
+                patents.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'group flex flex-col md:flex-row items-center justify-between p-6 bg-hologram-glass border border-outline-variant/20 rounded-xl';
+                    div.innerHTML = `<div class="flex items-center gap-6 flex-1 min-w-0"><span class="font-mono text-primary text-sm flex-shrink-0">${p.id}</span><div class="min-w-0"><h4 class="font-body-lg text-white">${p.title}</h4><p class="text-xs text-outline truncate">${p.desc}</p></div></div><div class="px-3 py-1 bg-primary/10 border border-primary/20 text-[10px] text-primary flex-shrink-0 mt-3 md:mt-0 ml-0 md:ml-4 rounded-full">${p.status}</div>`;
+                    container.appendChild(div);
+                });
+            }
+
+            function renderCertMarquee() {
+                const marquee = document.getElementById('cert-marquee');
+                certs.forEach(c => {
+                    const badge = document.createElement('div');
+                    badge.className = 'inline-block glass-panel px-8 py-4 rounded-full border-primary/20 flex items-center gap-4 mx-2 flex-shrink-0';
+                    badge.innerHTML = `<div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">verified_user</span></div><span class="font-label-sm text-white tracking-widest">${c}</span>`;
+                    marquee.appendChild(badge);
+                });
+            }
+
+            function renderEndorsements() {
+                const slider = document.getElementById('endorsements-slider');
+                endorsements.forEach(e => {
+                    const card = document.createElement('div');
+                    card.className = 'w-[450px] flex-shrink-0 bg-surface-container/40 backdrop-blur-xl border border-white/10 rounded-xl p-8';
+                    card.innerHTML = `<div class="flex items-center gap-4 mb-6"><div class="w-12 h-12 rounded-full border border-primary/30 bg-primary/5 flex items-center justify-center"><span class="material-symbols-outlined text-primary">person</span></div><div><h4 class="text-white font-bold">${e.name}</h4><p class="text-[10px] text-on-surface-variant">${e.title}</p></div></div><p class="text-on-surface-variant italic text-sm">${e.text}</p><div class="mt-6 flex justify-between text-[10px] opacity-40"><span>VERIFIED_ENDORSEMENT</span><span>2026</span></div>`;
+                    slider.appendChild(card);
+                });
+            }
+
+            renderAchievements();
+            renderPatents();
+            renderCertMarquee();
+            renderEndorsements();
+
+            // Project click
+            document.querySelectorAll('[data-project-link]').forEach(el => {
+                el.addEventListener('click', (e) => { e.stopPropagation(); const link = el.getAttribute('data-project-link'); if (link && link !== '#') window.open(link, '_blank'); });
+            });
+
+            // Typewriter
+            const texts = ["Full Stack Innovator", "Android Developer", "IoT and AI Enthusiast", "Patent Holder", "Published Author"];
+            let idx = 0, ch = 0, del = false, twEl = document.getElementById('typewriter');
+            function typeWrite() {
+                let cur = texts[idx];
+                if (del) { twEl.innerText = cur.substring(0, ch - 1); ch--; } else { twEl.innerText = cur.substring(0, ch + 1); ch++; }
+                if (!del && ch === cur.length) { del = true; setTimeout(typeWrite, 1500); return; }
+                if (del && ch === 0) { del = false; idx = (idx + 1) % texts.length; setTimeout(typeWrite, 500); return; }
+                setTimeout(typeWrite, del ? 50 : 100);
+            }
+            setTimeout(typeWrite, 500);
+
+            // Circular Collage
+            function initCircularCollage() {
+                const segments = document.querySelectorAll('.ring-segment');
+                const numSegments = segments.length;
+                let angle = 0;
+                const speed = 0.006;
+                function getRadius() { const w = window.innerWidth; if (w <= 768) return 130; if (w <= 1200) return 170; return 210; }
+                function getSegmentSize() { const w = window.innerWidth; if (w <= 768) return 75; if (w <= 1200) return 100; return 130; }
+                function animate() {
+                    angle += speed;
+                    const radius = getRadius();
+                    const size = getSegmentSize();
+                    const halfSize = size / 2;
+                    segments.forEach((segment, i) => {
+                        const startAngle = (i * 2 * Math.PI) / numSegments;
+                        const currentAngle = startAngle + angle;
+                        const x = radius * Math.cos(currentAngle);
+                        const y = radius * Math.sin(currentAngle);
+                        segment.style.left = `calc(50% + ${x}px - ${halfSize}px)`;
+                        segment.style.top = `calc(50% + ${y}px - ${halfSize}px)`;
+                        segment.style.width = size + 'px';
+                        segment.style.height = size + 'px';
+                    });
+                    requestAnimationFrame(animate);
+                }
+                const initRadius = getRadius();
+                const initSize = getSegmentSize();
+                const initHalfSize = initSize / 2;
+                segments.forEach((segment, i) => {
+                    const startAngle = (i * 2 * Math.PI) / numSegments;
+                    const x = initRadius * Math.cos(startAngle);
+                    const y = initRadius * Math.sin(startAngle);
+                    segment.style.left = `calc(50% + ${x}px - ${initHalfSize}px)`;
+                    segment.style.top = `calc(50% + ${y}px - ${initHalfSize}px)`;
+                    segment.style.width = initSize + 'px';
+                    segment.style.height = initSize + 'px';
+                });
+                requestAnimationFrame(animate);
+            }
+            initCircularCollage();
+
+            // GSAP Scroll Animations
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.achievement-card').forEach(el => { gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, opacity: 0, y: 30, duration: 0.6 }); });
+            const projectSets = document.querySelectorAll('.project-set');
+            projectSets.forEach((set) => { const cards = set.querySelectorAll('.hologram-card'); gsap.from(cards, { scrollTrigger: { trigger: set, start: "top 78%" }, opacity: 0, y: 40, duration: 0.7, stagger: 0.15 }); });
+
+            // Navigation highlight
+            window.addEventListener('scroll', () => {
+                let sections = document.querySelectorAll('section[id]');
+                let links = document.querySelectorAll('nav a');
+                let cur = "";
+                sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) cur = sec.getAttribute('id'); });
+                links.forEach(link => {
+                    link.classList.remove('text-primary', 'bg-primary-container/10', 'border-l-4', 'border-primary', 'shadow-[inset_8px_0_12px_-6px_rgba(0,219,231,0.3)]');
+                    link.classList.add('text-on-surface-variant/60');
+                    if (link.getAttribute('href') && link.getAttribute('href').includes(cur)) {
+                        link.classList.add('text-primary', 'bg-primary-container/10', 'border-l-4', 'border-primary', 'shadow-[inset_8px_0_12px_-6px_rgba(0,219,231,0.3)]');
+                        link.classList.remove('text-on-surface-variant/60');
+                    }
+                });
+            });
+
+            document.getElementById('establish-uplink')?.addEventListener('click', () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }));
+            document.querySelector('.scroll-down')?.addEventListener('click', () => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' }));
+
+            // Resume Envelope Logic
+            const envelope = document.getElementById('resumeEnvelope');
+            const envelopeInner = document.getElementById('envelopeInner');
+            const viewResumeBtn = document.getElementById('viewResumeBtn');
+            const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+            if (envelope && envelopeInner) {
+                envelope.addEventListener('click', (e) => {
+                    if (e.target !== viewResumeBtn && e.target !== downloadResumeBtn && !viewResumeBtn?.contains(e.target) && !downloadResumeBtn?.contains(e.target)) {
+                        envelopeInner.classList.toggle('open');
+                    }
+                });
+            }
+            if (viewResumeBtn) viewResumeBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('Deven_resume.pdf', '_blank'); });
+            if (downloadResumeBtn) downloadResumeBtn.addEventListener('click', (e) => { e.stopPropagation(); const link = document.createElement('a'); link.href = 'Deven_resume.pdf'; link.download = 'Deven_Goyal_Resume.pdf'; link.click(); });
+
+            // ============ DHRΔVΔN VOICE ASSISTANT (FULLY RESTORED) ============
+            const dhravanKnowledge = [
+                { keywords: ['who are you', 'your name', 'what are you'], response: "I am DHRΔVΔN, the AI assistant of Deven Goyal. I serve as the neural interface for his portfolio. Deven is a Full Stack Developer, AI Enthusiast, Innovator, Patent Holder, and B.Tech CSE student at Chandigarh University." },
+                { keywords: ['tell me about deven', 'who is deven', 'deven goyal'], response: "Deven Goyal is a Computer Science Engineering student at Chandigarh University. He specializes in Full Stack Development, Artificial Intelligence, IoT systems, and Android Development. He has won national-level hackathons, holds multiple patents, and is a published author." },
+                { keywords: ['skills', 'technologies', 'tech stack', 'what can deven do'], response: "Deven is proficient in HTML, CSS, JavaScript, React, Node.js, Python, Java, C++, MongoDB, SQL, AI/ML frameworks, IoT platforms, Git, and Android Development." },
+                { keywords: ['achievements', 'awards', 'hackathon'], response: "Deven's notable achievements include: Winner of Hackathon at IIT Ropar, Winner of Stack Sprint 1.0, 12th rank in Intellactathon, International Mathematics Olympiad Rank 418, Published Kindle Author, and Top 9% Learner on Duolingo." },
+                { keywords: ['patents', 'patent'], response: "Yes, Deven has worked on multiple patents covering domains like Decentralized Neural Fabric Architecture, Autonomous Quantum Conflict Resolution, Bio-Sensing Cryptographic Validation, and several others across AI, IoT, and healthcare." },
+                { keywords: ['projects', 'what has deven built'], response: "Deven has developed numerous projects including Bharat Intelligence (localized LLM), MailIQ, Neuro-Scan Alpha, EcoSense AI, FinVis, SmartGrid Controller, MedChain, AeroSim Pro, and EdNova." },
+                { keywords: ['contact', 'how to reach', 'email'], response: "You can contact Deven through LinkedIn, GitHub, or email at devenxcelerate@gmail.com. All his social media profiles and contact links are available in the contact section of this portfolio." },
+                { keywords: ['hello', 'hi', 'hey'], response: "Hello! I'm DHRΔVΔN, Deven Goyal's AI assistant. I can tell you about Deven's skills, projects, achievements, patents, education, or how to contact him. What would you like to know?" }
+            ];
+            function getDhravanResponse(query) {
+                if (!query || query.trim() === '') return "I didn't catch that. Please tap the orb and ask me about Deven's skills, projects, or achievements.";
+                const q = query.toLowerCase();
+                for (const item of dhravanKnowledge) {
+                    for (const kw of item.keywords) {
+                        if (q.includes(kw)) return item.response;
+                    }
+                }
+                if (q.includes('skill') || q.includes('tech')) return dhravanKnowledge.find(k => k.keywords.includes('skills')).response;
+                if (q.includes('project')) return dhravanKnowledge.find(k => k.keywords.includes('projects')).response;
+                if (q.includes('patent')) return dhravanKnowledge.find(k => k.keywords.includes('patents')).response;
+                return "I'm not sure I understood that. You can ask me about Deven's skills, projects, achievements, patents, education, or how to contact him.";
+            }
+
+            const dhravanTriggerBtn = document.getElementById('dhravanTriggerBtn');
+            const dhravanBackdrop = document.getElementById('dhravanBackdrop');
+            const dhravanOverlay = document.getElementById('dhravanOverlay');
+            const dhravanLightOrb = document.getElementById('dhravanLightOrb');
+            const dhravanOrbIcon = document.getElementById('dhravanOrbIcon');
+            const dhravanStatus = document.getElementById('dhravanStatus');
+            const dhravanTranscript = document.getElementById('dhravanTranscript');
+            const dhravanCloseBtn = document.getElementById('dhravanCloseBtn');
+            const dhravanWaveform = document.getElementById('dhravanWaveform');
+            const dhravanManualListenBtn = document.getElementById('dhravanManualListenBtn');
+            const waveformBars = dhravanWaveform.querySelectorAll('.bar');
+            let dhravanActive = false;
+            let recognition = null;
+            let synth = window.speechSynthesis;
+            let speaking = false;
+            let listening = false;
+            let waveformInterval = null;
+
+            function startWaveformAnimation() { if (waveformInterval) clearInterval(waveformInterval); waveformInterval = setInterval(() => { waveformBars.forEach(bar => { bar.style.height = Math.random() * 32 + 4 + 'px'; }); }, 120); }
+            function stopWaveformAnimation() { if (waveformInterval) clearInterval(waveformInterval); waveformBars.forEach(bar => { bar.style.height = '8px'; }); }
+
+            function speakResponse(text) {
+                if (speaking) synth.cancel();
+                speaking = true;
+                dhravanStatus.textContent = 'DHRΔVΔN SPEAKING...';
+                dhravanTranscript.textContent = '';
+                dhravanOrbIcon.classList.remove('listening');
+                startWaveformAnimation();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                utterance.onend = () => { speaking = false; dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); dhravanOrbIcon.classList.remove('listening'); };
+                utterance.onerror = () => { speaking = false; dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); dhravanOrbIcon.classList.remove('listening'); };
+                synth.speak(utterance);
+            }
+
+            function startListening() {
+                if (speaking) { synth.cancel(); speaking = false; }
+                if (!recognition) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    if (!SpeechRecognition) { dhravanStatus.textContent = 'SPEECH NOT SUPPORTED'; speakResponse("Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari."); return; }
+                    recognition = new SpeechRecognition();
+                    recognition.lang = 'en-US';
+                    recognition.interimResults = false;
+                    recognition.onresult = (event) => {
+                        listening = false;
+                        dhravanOrbIcon.classList.remove('listening');
+                        stopWaveformAnimation();
+                        const transcript = event.results[0][0].transcript;
+                        dhravanTranscript.textContent = 'You said: "' + transcript + '"';
+                        dhravanStatus.textContent = 'PROCESSING...';
+                        const response = getDhravanResponse(transcript);
+                        setTimeout(() => { dhravanTranscript.textContent = ''; speakResponse(response); }, 500);
+                    };
+                    recognition.onerror = (event) => { listening = false; dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; };
+                    recognition.onend = () => { listening = false; dhravanOrbIcon.classList.remove('listening'); if (!speaking) stopWaveformAnimation(); };
+                }
+                if (!listening && !speaking) {
+                    listening = true;
+                    dhravanStatus.textContent = 'LISTENING...';
+                    dhravanTranscript.textContent = '';
+                    dhravanOrbIcon.classList.add('listening');
+                    startWaveformAnimation();
+                    try { recognition.start(); } catch(e) { listening = false; dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); }
+                }
+            }
+
+            function openDhravan() {
+                if (dhravanActive) return;
+                dhravanActive = true;
+                document.body.style.overflow = 'hidden';
+                dhravanBackdrop.classList.add('active');
+                dhravanOverlay.classList.add('active');
+                dhravanLightOrb.classList.add('active');
+                dhravanStatus.textContent = 'INITIALIZING...';
+                setTimeout(() => { dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; speakResponse("Greetings. I am DHRΔVΔN, the neural interface of Deven Goyal's portfolio. Tap the orb and ask me anything about Deven's skills, projects, or achievements."); }, 1000);
+            }
+
+            function closeDhravan() {
+                if (!dhravanActive) return;
+                dhravanActive = false;
+                if (speaking) synth.cancel();
+                if (listening && recognition) try { recognition.stop(); } catch(e) {}
+                stopWaveformAnimation();
+                dhravanOrbIcon.classList.remove('listening');
+                document.body.style.overflow = 'auto';
+                dhravanBackdrop.classList.remove('active');
+                dhravanOverlay.classList.remove('active');
+                dhravanLightOrb.classList.remove('active');
+            }
+
+            dhravanTriggerBtn.addEventListener('click', openDhravan);
+            dhravanCloseBtn.addEventListener('click', closeDhravan);
+            dhravanBackdrop.addEventListener('click', (e) => { if (e.target === dhravanBackdrop) closeDhravan(); });
+            dhravanOrbIcon.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
+            dhravanManualListenBtn.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dhravanActive) closeDhravan(); });
+
+            // More projects indicator
+            const moreIndicator = document.getElementById('moreProjectsIndicator');
+            const allProjectSets = document.querySelectorAll('.project-set');
+            if (moreIndicator && allProjectSets.length > 1) {
+                const lastSet = allProjectSets[allProjectSets.length - 1];
+                const observer = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { moreIndicator.style.opacity = '0'; setTimeout(() => moreIndicator.style.display = 'none', 600); observer.unobserve(lastSet); } }, { threshold: 0.3 });
+                observer.observe(lastSet);
+            }
+
+            document.body.style.overflow = 'hidden';
+            console.log('%c🧠 NEURAL NEXUS ONLINE | DHRΔVΔN v2.084 | ALL SYSTEMS NOMINAL', 'color:#00dbe7;font-size:14px;');
+        })();
+    </script>
+</body>
+</html>

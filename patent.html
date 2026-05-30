@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellectual Vault | Deven Goyal - Patents & Publications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #0a0e17;
+            --darker-bg: #050811;
+            --card-bg: rgba(18, 24, 40, 0.7);
+            --card-hover: #1a2238;
+            --accent-cyan: #00f3ff;
+            --accent-violet: #9d4edd;
+            --accent-gold: #ffd166;
+            --accent-green: #4ade80;
+            --accent-pink: #ff6b9d;
+            --text-primary: #f8f9fa;
+            --text-secondary: #b0b7c3;
+            --border-color: rgba(0, 243, 255, 0.2);
+            --gradient-cyan-violet: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+            --gradient-gold-violet: linear-gradient(135deg, var(--accent-gold), var(--accent-violet));
+            --gradient-cyan-pink: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, rgba(0, 243, 255, 0.02) 0px, rgba(0, 243, 255, 0.02) 2px, transparent 2px, transparent 8px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            padding: 12px 28px;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .nav-btn.active {
+            color: white;
+            background: var(--gradient-cyan-violet);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: var(--gradient-cyan-violet);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px 35px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-gold-violet);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-cyan-pink);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient-cyan-violet);
+            border-radius: 3px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-cyan-violet);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
+            border-color: transparent;
+        }
+
+        .card:hover::before {
+            opacity: 0.08;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Patent Card */
+        .patent-title, .chapter-title, .paper-title {
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            gap: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .status-verified {
+            background: rgba(0, 243, 255, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+        }
+
+        .app-number {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .patent-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .year {
+            color: var(--accent-gold);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .view-btn {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .view-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .view-btn i {
+            transform: translateX(5px);
+        }
+
+        /* Book Card Specific */
+        .book-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+
+        .amazon-badge {
+            background: linear-gradient(135deg, #ff9900, #ff6600);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+        }
+
+        .isbn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Pagination */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .pagination-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--gradient-cyan-violet);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 17, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #121828, #0a0e17);
+            border-radius: 28px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-modal {
+            position: sticky;
+            top: 15px;
+            right: 20px;
+            float: right;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            margin: 15px;
+        }
+
+        .close-modal:hover {
+            background: var(--accent-cyan);
+            color: var(--dark-bg);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px 40px 50px;
+            clear: both;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: var(--gradient-cyan-violet);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .modal-detail {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .modal-label {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .modal-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .modal-btn.primary {
+            background: var(--gradient-cyan-violet);
+            color: white;
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4);
+        }
+
+        .modal-btn.secondary {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .modal-btn.secondary:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-cyan-violet);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-container {
+                gap: 20px;
+            }
+            .stat-item {
+                padding: 12px 20px;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-actions {
+                flex-direction: column;
+            }
+            .nav-btn {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <button class="nav-btn active" data-target="patents">📜 Patents</button>
+            <button class="nav-btn" data-target="books">📚 Books on Amazon</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Intellectual Vault</h1>
+            <p>A comprehensive showcase of patents and published books demonstrating innovation, research excellence, and intellectual contribution across cutting-edge technological domains.</p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="patent-count">7</div>
+                    <div class="stat-label">Granted Patents</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Amazon Kindle Books</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patents Section -->
+    <section id="patents" class="section visible">
+        <div class="container">
+            <h2 class="section-title">📜 Granted Patents</h2>
+            <div class="cards-grid" id="patents-grid"></div>
+            <div class="pagination-controls" id="patent-pagination">
+                <button class="pagination-btn" id="prev-patent-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <span class="page-info" id="patent-page-info">Page 1 of 2</span>
+                <button class="pagination-btn" id="next-patent-page">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="section">
+        <div class="container">
+            <h2 class="section-title">📚 Published Books on Amazon Kindle</h2>
+            <div class="cards-grid" id="books-grid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Intellectual Vault | Deven Goyal - Innovation & Research Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Complete Patent Data (7 patents from your portfolio)
+        const allPatents = [
+            { id: "#202511122602", title: "ConneCX : Smart Storage Device with Network Storage Capability", desc: "Advanced smart storage ecosystem with secure network-based data access and intelligent synchronization.", status: "VERIFIED", year: "2025", authority: "Indian Patent Office" },
+            { id: "#202611020405", title: "Energy Distribution and Regeneration System", desc: "Innovative system for intelligent power distribution, regenerative recovery, and adaptive energy management.", status: "VERIFIED", year: "2026", authority: "Indian Patent Office" },
+            { id: "#202611065622", title: "Fan-less Auto-Cooling Laptop Stand Using Passive Thermal Management", desc: "Passive thermal dissipation laptop stand engineered for silent and efficient cooling performance.", status: "VERIFIED", year: "2026", authority: "Indian Patent Office" },
+            { id: "#202511126806", title: "Intelligent Dustbin System for Waste Sorting, Hygienic Processing and Optimized Collection Routing", desc: "AI-powered waste management system with automated segregation and optimized collection routing.", status: "VERIFIED", year: "2025", authority: "Indian Patent Office" },
+            { id: "#202611021600", title: "Kinetic Neuro-Adaptive Footwear (KNAF): Intelligent Energy-Harvesting and Emotion-Synchronized Smart Shoes", desc: "Smart footwear integrating kinetic energy harvesting, adaptive sensing, and intelligent mobility analytics.", status: "VERIFIED", year: "2026", authority: "Indian Patent Office" },
+            { id: "#202511132517", title: "Lumo Intelligence : Smart Light Ventilation and Mobile Detection System", desc: "Intelligent automation system combining smart lighting, ventilation control, and mobile-based occupancy detection.", status: "VERIFIED", year: "2025", authority: "Indian Patent Office" },
+            { id: "#202611007559", title: "Smart Tire with Integrated Auto-Braking, Energy Generation, Balance Control, and Speed Limiting System", desc: "Advanced smart tire featuring automatic braking, energy generation, and adaptive balance control.", status: "VERIFIED", year: "2026", authority: "Indian Patent Office" }
+        ];
+
+        // Book Data with Amazon Kindle Links (ASINs provided)
+        const booksData = [
+            { asin: "B0GGHQVXQG", title: "The Science of Sleep", subtitle: "Understanding Circadian Rhythms & Mental Health", desc: "A comprehensive exploration of sleep science, its impact on cognitive performance, emotional regulation, and overall human health.", year: "2025", category: "Health & Wellness" },
+            { asin: "B0GGHRMBR2", title: "Quantum Cloud Computing", subtitle: "The Future of Computational Intelligence", desc: "Exploring the integration of quantum computing with cloud infrastructure for scalable, secure, and high-performance systems.", year: "2025", category: "Technology" },
+            { asin: "B0GGJ2DCL4", title: "Animal Protection & Conservation", subtitle: "Ethics, Science, and Sustainability", desc: "Analyzing ethical, ecological, and scientific approaches to animal protection, focusing on biodiversity conservation.", year: "2025", category: "Environment" },
+            { asin: "B0GNJRVQPP", title: "Music Frequencies & Brain Waves", subtitle: "The Neuroscience of Sound Healing", desc: "Investigating how different musical frequencies impact cognitive performance, emotional states, and neural synchronization.", year: "2026", category: "Neuroscience" },
+            { asin: "B0GPLKVQKQ", title: "Low Light Vision Technology", subtitle: "Advanced Image Enhancement for Dark Environments", desc: "Deep learning-based techniques for enhancing visibility in low-light and underwater conditions using GAN architectures.", year: "2026", category: "Computer Vision" },
+            { asin: "B0GX3B52HB", title: "Neural Interfaces & Brain-Computer Integration", subtitle: "The Future of Human-AI Symbiosis", desc: "Exploring cutting-edge neural interface technologies and their applications in healthcare, communication, and human augmentation.", year: "2026", category: "AI & Neuroscience" }
+        ];
+
+        // DOM Elements
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+        const patentsGrid = document.getElementById('patents-grid');
+        const booksGrid = document.getElementById('books-grid');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalBody = document.getElementById('modal-body');
+        const closeModal = document.getElementById('close-modal');
+
+        // Patent Pagination
+        let currentPage = 1;
+        const patentsPerPage = 6;
+        const totalPages = Math.ceil(allPatents.length / patentsPerPage);
+
+        function renderPatents() {
+            patentsGrid.innerHTML = '';
+            const start = (currentPage - 1) * patentsPerPage;
+            const end = start + patentsPerPage;
+            const pagePatents = allPatents.slice(start, end);
+
+            pagePatents.forEach((patent, idx) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-type', 'patent');
+                card.setAttribute('data-id', start + idx);
+                card.innerHTML = `
+                    <div class="card-content">
+                        <h3 class="patent-title">${patent.title}</h3>
+                        <span class="status-badge status-verified"><i class="fas fa-check-circle"></i> ${patent.status}</span>
+                        <p class="app-number"><i class="fas fa-hashtag"></i> ${patent.id}</p>
+                        <p class="patent-desc">${patent.desc.substring(0, 120)}${patent.desc.length > 120 ? '...' : ''}</p>
+                        <div class="card-footer">
+                            <span class="year"><i class="far fa-calendar-alt"></i> ${patent.year}</span>
+                            <span class="view-btn">View Details <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => openPatentModal(start + idx));
+                patentsGrid.appendChild(card);
+            });
+
+            document.getElementById('patent-page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prev-patent-page').disabled = currentPage === 1;
+            document.getElementById('next-patent-page').disabled = currentPage === totalPages;
+        }
+
+        function renderBooks() {
+            booksGrid.innerHTML = '';
+            booksData.forEach((book, idx) => {
+                const amazonUrl = `https://www.amazon.in/dp/${book.asin}`;
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-type', 'book');
+                card.setAttribute('data-id', idx);
+                card.innerHTML = `
+                    <div class="card-content">
+                        <h3 class="chapter-title">${book.title}</h3>
+                        <div class="book-meta">
+                            <span class="amazon-badge"><i class="fab fa-amazon"></i> Kindle Edition</span>
+                            <span class="isbn">ASIN: ${book.asin}</span>
+                        </div>
+                        <p class="patent-desc">${book.desc.substring(0, 100)}${book.desc.length > 100 ? '...' : ''}</p>
+                        <div class="book-meta" style="margin-top: 8px;">
+                            <span style="color: var(--accent-gold); font-size: 0.8rem;"><i class="fas fa-tag"></i> ${book.category}</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.8rem;"><i class="far fa-calendar-alt"></i> ${book.year}</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="year"><i class="fas fa-star"></i> Available on Amazon</span>
+                            <span class="view-btn">View Book <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => openBookModal(idx));
+                booksGrid.appendChild(card);
+            });
+        }
+
+        function openPatentModal(id) {
+            const p = allPatents[id];
+            modalBody.innerHTML = `
+                <h2 class="modal-title">${p.title}</h2>
+                <div class="modal-detail"><div class="modal-label">Patent Application Number</div><div class="modal-value"><i class="fas fa-hashtag"></i> ${p.id}</div></div>
+                <div class="modal-detail"><div class="modal-label">Status</div><div class="modal-value"><span class="status-badge status-verified"><i class="fas fa-check-circle"></i> ${p.status}</span></div></div>
+                <div class="modal-detail"><div class="modal-label">Filing Authority</div><div class="modal-value">${p.authority}</div></div>
+                <div class="modal-detail"><div class="modal-label">Year</div><div class="modal-value">${p.year}</div></div>
+                <div class="modal-detail"><div class="modal-label">Innovation Summary</div><div class="modal-value">${p.desc}</div></div>
+                <div class="modal-actions"><a href="#" class="modal-btn primary" onclick="alert('Patent document will be available soon. Contact for more details.'); return false;"><i class="fas fa-file-pdf"></i> Download Abstract</a></div>
+            `;
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openBookModal(id) {
+            const b = booksData[id];
+            const amazonUrl = `https://www.amazon.in/dp/${b.asin}`;
+            modalBody.innerHTML = `
+                <h2 class="modal-title">${b.title}</h2>
+                <p style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem;">${b.subtitle}</p>
+                <div class="modal-detail"><div class="modal-label">ASIN (Amazon Standard ID)</div><div class="modal-value">${b.asin}</div></div>
+                <div class="modal-detail"><div class="modal-label">Category</div><div class="modal-value">${b.category}</div></div>
+                <div class="modal-detail"><div class="modal-label">Publication Year</div><div class="modal-value">${b.year}</div></div>
+                <div class="modal-detail"><div class="modal-label">About This Book</div><div class="modal-value">${b.desc}</div></div>
+                <div class="modal-actions">
+                    <a href="${amazonUrl}" class="modal-btn primary" target="_blank"><i class="fab fa-amazon"></i> Buy on Amazon Kindle</a>
+                    <a href="${amazonUrl}" class="modal-btn secondary" target="_blank"><i class="fas fa-book-open"></i> Read Sample</a>
+                </div>
+            `;
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Navigation
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                navBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Pagination
+        document.getElementById('prev-patent-page').addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderPatents(); document.getElementById('patents').scrollIntoView({ behavior: 'smooth' }); } });
+        document.getElementById('next-patent-page').addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderPatents(); document.getElementById('patents').scrollIntoView({ behavior: 'smooth' }); } });
+
+        // Modal Close
+        closeModal.addEventListener('click', () => { modalOverlay.classList.remove('active'); document.body.style.overflow = 'auto'; });
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); document.body.style.overflow = 'auto'; } });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modalOverlay.classList.contains('active')) { modalOverlay.classList.remove('active'); document.body.style.overflow = 'auto'; } });
+
+        // Section Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible', 'animate-fadeInUp'); } });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        // Initialize
+        renderPatents();
+        renderBooks();
+    </script>
+</body>
+</html>
