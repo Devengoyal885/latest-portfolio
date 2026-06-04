@@ -83,22 +83,6 @@ latest-portfolio/
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-
-Add screenshot here
-
-### Projects Section
-
-Add screenshot here
-
-### Contact Section
-
-Add screenshot here
-
----
-
 ## 🛠️ Local Setup
 
 Clone the repository:
