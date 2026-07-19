@@ -1,0 +1,15 @@
+{
+  "name": "neural-nexus-portfolio",
+  "version": "2.0.0",
+  "description": "Secure portfolio with obfuscated code",
+  "scripts": {
+    "build": "npm run minify-css && npm run obfuscate-js",
+    "minify-css": "cleancss -o style.min.css style.css",
+    "obfuscate-js": "javascript-obfuscator script.js --output script.min.js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true --disable-console-output false --identifier-names-generator hexadecimal --rename-globals true --rotate-string-array true --self-defending true --string-array true --string-array-encoding base64 --string-array-threshold 0.75 --transform-object-keys true",
+    "predeploy": "npm run build"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "javascript-obfuscator": "^4.0.2"
+  }
+}

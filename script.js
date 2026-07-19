@@ -18,25 +18,104 @@
 
     // ============ DATA ============
     const achievementsData = [
-        { title: "First position in Hackathon @IIT ROPAR ", desc: "Secure First position in National level hackathon Ai for social good organized by IIT Ropar ", image: "/photos/IIT ropar.jpg", icon: "fa-building" },
+        { title: "First position in Ai for Social Good Hackathon @IIT ROPAR ", desc: "Secure First position in National level hackathon Ai for social good organized by IIT Ropar ", image: "/photos/IIT ropar.jpg", icon: "fa-building" },
+        { title: "Runner up in Peace of code Hackathon IIT Ropar", desc: "Secure Runner up position in Peace of code Hackathon organized by IIT Ropar ", image: "/photos/peace.jpeg", icon: "fa-moon" },
         { title: "First Position in Stack Sprint 1.0 Hackathon", desc: "Eligible for second level in International olympiad of mathematics organized by silverzone ", image: "/photos/Stack.jpeg", icon: "fa-certificate" },
-        { title: "12th Position in Intellactathon", desc: "Secure 12 position in Intellactathon a university level patent based competition  ", image: "/photos/intellactathon.jpg", icon: "fa-trophy" },
+        { title: "2nd Position in Vibe Coding Hackathon", desc: "Secure 2nd position in Vibe Coding Hackathon organized by hack India", image: "/photos/VIbe.jpg", icon: "fa-trophy" },
         { title: "IOM rank 418", desc: "Eligible for second level in International olympiad of mathematics organized by silverzone ", image: "/photos/math-olympiad.jpg", icon: "fa-trophy" },
         { title: "2nd prize in photograph day", desc: "Won 2nd place in a photography competition.", image: "/photos/Photograph.jpeg", icon: "fa-award" },
         { title: "Acheievers award 2026 ", desc: " Received achievers award for securing 1st position in Hackathon organized by IIT Ropar ", image: "/photos/achievers.jpeg", icon: "fa-star" },
         { title: "Under top 20 in enigma quest", desc: "Surpass over 100 students in Enigma quest organize by Brainstromers Club.", image: "/photos/enigma.jpeg", icon: "fa-graduation-cap" },
         { title: "2 time award winner in group singing competition", desc: "Participated in district level singing competion organized in Bal Bhawan Jind", image: "/photos/singing.jpg", icon: "fa-user-tie" },
-        { title: "Runner up in Peace of code Hackathon IIT Ropar", desc: "Secure Runner up position in Peace of code Hackathon organized by IIT Ropar ", image: "/photos/peace.jpeg", icon: "fa-moon" }
     ];
+    
     const patents = [
-        { id: "#202511122602", title: "ConneCX : Smart Storage Device with Network Storage Capability", desc: "Advanced smart storage ecosystem with secure network-based data access and intelligent synchronization.", status: "VERIFIED" },
-        { id: "#202611020405", title: "Energy Distribution and Regeneration System", desc: "Innovative system for intelligent power distribution, regenerative recovery, and adaptive energy management.", status: "VERIFIED" },
-        { id: "#202611065622", title: "Fan-less Auto-Cooling Laptop Stand Using Passive Thermal Management", desc: "Passive thermal dissipation laptop stand engineered for silent and efficient cooling performance.", status: "VERIFIED" },
-        { id: "#202511126806", title: "Intelligent Dustbin System for Waste Sorting, Hygienic Processing and Optimized Collection Routing", desc: "AI-powered waste management system with automated segregation and optimized collection routing.", status: "VERIFIED" },
-        { id: "#202611021600", title: "Kinetic Neuro-Adaptive Footwear (KNAF): Intelligent Energy-Harvesting and Emotion-Synchronized Smart Shoes for Human Neuro-Energetic Optimization", desc: "Smart footwear integrating kinetic energy harvesting, adaptive sensing, and intelligent mobility analytics.", status: "VERIFIED" },
-        { id: "#202511132517", title: "Lumo Intelligence : Smart Light Ventilation and Mobile Detection System", desc: "Intelligent automation system combining smart lighting, ventilation control, and mobile-based occupancy detection.", status: "VERIFIED" },
-        { id: "#202611007559", title: "Smart Tire with Integrated Auto-Braking, Energy Generation, Balance Control, and Speed Limiting System", desc: "Advanced smart tire featuring automatic braking, energy generation, and adaptive balance control.", status: "VERIFIED" }
-    ];
+    {
+        id: "#202611068506",
+        title: "AI-Driven Wearable System for Air-Based Multi-Instrument Musical Performance",
+        desc: "AI-powered wearable enabling air-based multi-instrument musical performance through intelligent gesture recognition and adaptive sound generation.",
+        status: "Filed"
+    },
+    {
+        id: "#202611073983",
+        title: "AgriShield: Smart Complete Agriculture System",
+        desc: "Integrated smart agriculture platform combining intelligent monitoring, automation, and decision support for precision farming.",
+        status: "Filed"
+    },
+    {
+        id: "#202511122602",
+        title: "ConneCX: Smart Storage Device with Network Storage Capability",
+        desc: "Advanced smart storage ecosystem with secure network-based data access and intelligent synchronization.",
+        status: "Published"
+    },
+    {
+        id: "#202611076579",
+        title: "DENTASENSE — AI-Enabled Intraoral Device for Adaptive Dental, Psychological & Predictive Health Analysis",
+        desc: "AI-enabled intraoral device for comprehensive dental diagnostics, psychological assessment, and predictive health monitoring.",
+        status: "Filed"
+    },
+    {
+        id: "#202611068512",
+        title: "Dual-Mode Wearable-Controlled Smart Laptop System with Physical & Virtual Display Interface",
+        desc: "Innovative laptop system supporting wearable-based control with seamless switching between physical and virtual display interfaces.",
+        status: "Filed"
+    },
+    {
+        id: "#202611020405",
+        title: "Energy Distribution and Regeneration System",
+        desc: "Innovative system for intelligent power distribution, regenerative recovery, and adaptive energy management.",
+        status: "Published"
+    },
+    {
+        id: "#202611065620",
+        title: "EyeLux: Smart Gaze-Aware Circadian-Safe Wearable Illumination System",
+        desc: "Smart wearable illumination system with gaze-aware lighting, circadian rhythm optimization, and adaptive brightness control.",
+        status: "Filed"
+    },
+    {
+        id: "#202611065622",
+        title: "Fan-less Auto-Cooling Laptop Stand Using Passive Thermal Management",
+        desc: "Passive thermal dissipation laptop stand engineered for silent and efficient cooling performance.",
+        status: "Filed"
+    },
+    {
+        id: "#202511126806",
+        title: "Intelligent Dustbin System for Waste Sorting, Hygienic Processing & Optimized Collection Routing",
+        desc: "AI-powered waste management system with automated segregation, hygienic processing, and optimized collection routing.",
+        status: "Published"
+    },
+    {
+        id: "#202611021600",
+        title: "Kinetic Neuro-Adaptive Footwear (KNAF)",
+        desc: "Smart footwear integrating kinetic energy harvesting, adaptive sensing, and intelligent mobility analytics for enhanced user experience.",
+        status: "Published"
+    },
+    {
+        id: "#202611079826",
+        title: "LumiTrack Reader: Smart Night Book Reader",
+        desc: "Intelligent night-reading device featuring adaptive illumination, eye comfort optimization, and smart reading assistance.",
+        status: "Filed"
+    },
+    {
+        id: "#202511132517",
+        title: "Lumo Intelligence: Smart Light, Ventilation & Mobile Detection System",
+        desc: "Intelligent automation system combining smart lighting, ventilation control, and mobile-based occupancy detection.",
+        status: "Published"
+    },
+    {
+        id: "#202611079796",
+        title: "SMART PILLOW — Adaptive Sleep Posture and Softness Optimization System",
+        desc: "Adaptive smart pillow capable of optimizing sleep posture, comfort, and softness using intelligent sensing technologies.",
+        status: "Filed"
+    },
+    {
+        id: "#202611007559",
+        title: "Smart Tire with Integrated Auto-Braking, Energy Generation, Balance Control & Speed Limiting System",
+        desc: "Advanced smart tire featuring automatic braking, energy generation, balance control, and adaptive speed limiting for enhanced vehicle safety.",
+        status: "Published"
+    }
+];
+    
     const certs = [
         "FULL_STACK_ENGINEERING_PRO", "AI_RESEARCH_SPECIALIST", "PATENT_INNOVATOR_CERTIFIED", "CLOUD_COMPUTING_ENGINEER",
         "AWS_SOLUTIONS_ARCHITECT", "ADVANCED_WEB_ARCHITECT", "HACKATHON_CHAMPION_SERIES", "SOFTWARE_INNOVATION_EXPERT",
@@ -44,6 +123,7 @@
         "SYSTEM_DESIGN_ASSOCIATE", "OPEN_SOURCE_CONTRIBUTOR", "DATA_STRUCTURES_EXPERT", "PROBLEM_SOLVING_ELITE",
         "DEVOPS_FOUNDATION_CERTIFIED", "PATENT_RESEARCH_ASSOCIATE", "MACHINE_LEARNING_PRACTITIONER", "GENAI_APPLICATION_DEVELOPER"
     ];
+    
     const endorsements = [
         { name: "Abhilasha Nanda", title: "Assistant Professor • IIT Ropar", text: "Deven demonstrated impressive technical knowledge, strong problem-solving ability, and a research-oriented mindset. He quickly analyzes challenges, explores innovative solutions, and effectively applies research to achieve practical outcomes under tight deadlines." },
         { name: "Nishant Malhotra", title: "AI Summer Resident • IIM Ahmedabad", text: "Deven showcased strong technical understanding, creativity, and dedication toward problem-solving. His research skills, quick learning ability, and confidence in working on innovative ideas make him a promising developer and researcher." },
@@ -60,6 +140,7 @@
     // Render Functions
     function renderAchievements() {
         const grid = document.getElementById('achievements-grid');
+        if (!grid) return;
         achievementsData.forEach((a, idx) => {
             const card = document.createElement('div');
             card.className = 'achievement-card';
@@ -77,12 +158,14 @@
     const closeModalBtn = document.getElementById('closeModalBtn');
     function openAchievementModal(index) { const a = achievementsData[index]; if (a) { modalImg.src = a.image; modalTitle.innerText = a.title; modalDesc.innerText = a.desc; modal.classList.add('active'); } }
     function closeModal() { modal.classList.remove('active'); }
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.getElementById('achievements-grid')?.addEventListener('click', (e) => { const card = e.target.closest('.achievement-card'); if (card && card.dataset.achievementIndex !== undefined) openAchievementModal(parseInt(card.dataset.achievementIndex)); });
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    const achievementsGrid = document.getElementById('achievements-grid');
+    if (achievementsGrid) achievementsGrid.addEventListener('click', (e) => { const card = e.target.closest('.achievement-card'); if (card && card.dataset.achievementIndex !== undefined) openAchievementModal(parseInt(card.dataset.achievementIndex)); });
 
     function renderPatents() {
         const container = document.getElementById('patents-list');
+        if (!container) return;
         patents.forEach(p => {
             const div = document.createElement('div');
             div.className = 'group flex flex-col md:flex-row items-center justify-between p-6 bg-hologram-glass border border-outline-variant/20 rounded-xl';
@@ -93,6 +176,7 @@
 
     function renderCertMarquee() {
         const marquee = document.getElementById('cert-marquee');
+        if (!marquee) return;
         certs.forEach(c => {
             const badge = document.createElement('div');
             badge.className = 'inline-block glass-panel px-8 py-4 rounded-full border-primary/20 flex items-center gap-4 mx-2 flex-shrink-0';
@@ -103,6 +187,7 @@
 
     function renderEndorsements() {
         const slider = document.getElementById('endorsements-slider');
+        if (!slider) return;
         endorsements.forEach(e => {
             const card = document.createElement('div');
             card.className = 'w-[450px] flex-shrink-0 bg-surface-container/40 backdrop-blur-xl border border-white/10 rounded-xl p-8';
@@ -122,18 +207,21 @@
     // Typewriter
     const texts = ["Full Stack Innovator", "Android Developer", "IoT and AI Enthusiast", "Patent Holder", "Published Author"];
     let idx = 0, ch = 0, del = false, twEl = document.getElementById('typewriter');
-    function typeWrite() {
-        let cur = texts[idx];
-        if (del) { twEl.innerText = cur.substring(0, ch - 1); ch--; } else { twEl.innerText = cur.substring(0, ch + 1); ch++; }
-        if (!del && ch === cur.length) { del = true; setTimeout(typeWrite, 1500); return; }
-        if (del && ch === 0) { del = false; idx = (idx + 1) % texts.length; setTimeout(typeWrite, 500); return; }
-        setTimeout(typeWrite, del ? 50 : 100);
+    if (twEl) {
+        function typeWrite() {
+            let cur = texts[idx];
+            if (del) { twEl.innerText = cur.substring(0, ch - 1); ch--; } else { twEl.innerText = cur.substring(0, ch + 1); ch++; }
+            if (!del && ch === cur.length) { del = true; setTimeout(typeWrite, 1500); return; }
+            if (del && ch === 0) { del = false; idx = (idx + 1) % texts.length; setTimeout(typeWrite, 500); return; }
+            setTimeout(typeWrite, del ? 50 : 100);
+        }
+        setTimeout(typeWrite, 500);
     }
-    setTimeout(typeWrite, 500);
 
     // Circular Collage
     function initCircularCollage() {
         const segments = document.querySelectorAll('.ring-segment');
+        if (!segments.length) return;
         const numSegments = segments.length;
         let angle = 0;
         const speed = 0.006;
@@ -194,7 +282,8 @@
         });
     });
 
-    document.querySelector('.scroll-down')?.addEventListener('click', () => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' }));
+    const scrollDown = document.querySelector('.scroll-down');
+    if (scrollDown) scrollDown.addEventListener('click', () => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' }));
 
     // Resume Envelope Logic
     const envelope = document.getElementById('resumeEnvelope');
@@ -207,7 +296,20 @@
     if (viewResumeBtn) viewResumeBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('Deven_resume.pdf', '_blank'); });
     if (downloadResumeBtn) downloadResumeBtn.addEventListener('click', (e) => { e.stopPropagation(); const link = document.createElement('a'); link.href = 'Deven_resume.pdf'; link.download = 'Deven_Goyal_Resume.pdf'; link.click(); });
 
-    // ============ DHRΔVΔN VOICE ASSISTANT ============
+    // LinkedIn Follower Count (Live)
+    const followersSpan = document.getElementById('followersCount');
+    if(followersSpan) {
+        fetch('https://api.allorigins.win/raw?url=https://www.linkedin.com/in/deven-goyal/')
+            .then(res => res.text())
+            .then(html => {
+                const match = html.match(/(\d+[,]?\d*)\s+followers?/i);
+                if (match && match[1]) followersSpan.innerText = match[1].replace(',', '') + '+';
+                else followersSpan.innerText = '2,150+';
+            })
+            .catch(() => { followersSpan.innerText = '2,150+'; });
+    }
+
+    // DHRΔVΔN VOICE ASSISTANT
     const dhravanKnowledge = [
         { keywords: ['who are you', 'your name', 'what are you'], response: "I am DHRΔVΔN, the AI assistant of Deven Goyal. I serve as the neural interface for his portfolio. Deven is a Full Stack Developer, AI Enthusiast, Innovator, Patent Holder, and B.Tech CSE student at Chandigarh University." },
         { keywords: ['tell me about deven', 'who is deven', 'deven goyal'], response: "Deven Goyal is a Computer Science Engineering student at Chandigarh University. He specializes in Full Stack Development, Artificial Intelligence, IoT systems, and Android Development. He has won national-level hackathons, holds multiple patents, and is a published author." },
@@ -218,6 +320,7 @@
         { keywords: ['contact', 'how to reach', 'email'], response: "You can contact Deven through LinkedIn, GitHub, or email at devenxcelerate@gmail.com. All his social media profiles and contact links are available in the contact section of this portfolio." },
         { keywords: ['hello', 'hi', 'hey'], response: "Hello! I'm DHRΔVΔN, Deven Goyal's AI assistant. I can tell you about Deven's skills, projects, achievements, patents, education, or how to contact him. What would you like to know?" }
     ];
+    
     function getDhravanResponse(query) {
         if (!query || query.trim() === '') return "I didn't catch that. Please tap the orb and ask me about Deven's skills, projects, or achievements.";
         const q = query.toLowerCase();
@@ -238,7 +341,7 @@
     const dhravanCloseBtn = document.getElementById('dhravanCloseBtn');
     const dhravanWaveform = document.getElementById('dhravanWaveform');
     const dhravanManualListenBtn = document.getElementById('dhravanManualListenBtn');
-    const waveformBars = dhravanWaveform.querySelectorAll('.bar');
+    const waveformBars = dhravanWaveform ? dhravanWaveform.querySelectorAll('.bar') : [];
     let dhravanActive = false, recognition = null, synth = window.speechSynthesis, speaking = false, listening = false, waveformInterval = null;
 
     function startWaveformAnimation() { if (waveformInterval) clearInterval(waveformInterval); waveformInterval = setInterval(() => { waveformBars.forEach(bar => { bar.style.height = Math.random() * 32 + 4 + 'px'; }); }, 120); }
@@ -247,15 +350,15 @@
     function speakResponse(text) {
         if (speaking) synth.cancel();
         speaking = true;
-        dhravanStatus.textContent = 'DHRΔVΔN SPEAKING...';
-        dhravanTranscript.textContent = '';
-        dhravanOrbIcon.classList.remove('listening');
+        if (dhravanStatus) dhravanStatus.textContent = 'DHRΔVΔN SPEAKING...';
+        if (dhravanTranscript) dhravanTranscript.textContent = '';
+        if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening');
         startWaveformAnimation();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
         utterance.rate = 0.95;
-        utterance.onend = () => { speaking = false; dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); dhravanOrbIcon.classList.remove('listening'); };
-        utterance.onerror = () => { speaking = false; dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); dhravanOrbIcon.classList.remove('listening'); };
+        utterance.onend = () => { speaking = false; if (dhravanStatus) dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); };
+        utterance.onerror = () => { speaking = false; if (dhravanStatus) dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; stopWaveformAnimation(); if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); };
         synth.speak(utterance);
     }
 
@@ -263,25 +366,25 @@
         if (speaking) { synth.cancel(); speaking = false; }
         if (!recognition) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) { dhravanStatus.textContent = 'SPEECH NOT SUPPORTED'; speakResponse("Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari."); return; }
+            if (!SpeechRecognition) { if (dhravanStatus) dhravanStatus.textContent = 'SPEECH NOT SUPPORTED'; speakResponse("Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari."); return; }
             recognition = new SpeechRecognition();
             recognition.lang = 'en-US';
             recognition.interimResults = false;
-            recognition.onresult = (event) => { listening = false; dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); const transcript = event.results[0][0].transcript; dhravanTranscript.textContent = 'You said: "' + transcript + '"'; dhravanStatus.textContent = 'PROCESSING...'; const response = getDhravanResponse(transcript); setTimeout(() => { dhravanTranscript.textContent = ''; speakResponse(response); }, 500); };
-            recognition.onerror = () => { listening = false; dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; };
-            recognition.onend = () => { listening = false; dhravanOrbIcon.classList.remove('listening'); if (!speaking) stopWaveformAnimation(); };
+            recognition.onresult = (event) => { listening = false; if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); const transcript = event.results[0][0].transcript; if (dhravanTranscript) dhravanTranscript.textContent = 'You said: "' + transcript + '"'; if (dhravanStatus) dhravanStatus.textContent = 'PROCESSING...'; const response = getDhravanResponse(transcript); setTimeout(() => { if (dhravanTranscript) dhravanTranscript.textContent = ''; speakResponse(response); }, 500); };
+            recognition.onerror = () => { listening = false; if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); if (dhravanStatus) dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; };
+            recognition.onend = () => { listening = false; if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); if (!speaking) stopWaveformAnimation(); };
         }
-        if (!listening && !speaking) { listening = true; dhravanStatus.textContent = 'LISTENING...'; dhravanTranscript.textContent = ''; dhravanOrbIcon.classList.add('listening'); startWaveformAnimation(); try { recognition.start(); } catch(e) { listening = false; dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); } }
+        if (!listening && !speaking) { listening = true; if (dhravanStatus) dhravanStatus.textContent = 'LISTENING...'; if (dhravanTranscript) dhravanTranscript.textContent = ''; if (dhravanOrbIcon) dhravanOrbIcon.classList.add('listening'); startWaveformAnimation(); try { recognition.start(); } catch(e) { listening = false; if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); stopWaveformAnimation(); } }
     }
 
-    function openDhravan() { if (dhravanActive) return; dhravanActive = true; document.body.style.overflow = 'hidden'; dhravanBackdrop.classList.add('active'); dhravanOverlay.classList.add('active'); dhravanLightOrb.classList.add('active'); dhravanStatus.textContent = 'INITIALIZING...'; setTimeout(() => { dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; speakResponse("Greetings. I am DHRΔVΔN, the neural interface of Deven Goyal's portfolio. Tap the orb and ask me anything about Deven's skills, projects, or achievements."); }, 1000); }
-    function closeDhravan() { if (!dhravanActive) return; dhravanActive = false; if (speaking) synth.cancel(); if (listening && recognition) try { recognition.stop(); } catch(e) {} stopWaveformAnimation(); dhravanOrbIcon.classList.remove('listening'); document.body.style.overflow = 'auto'; dhravanBackdrop.classList.remove('active'); dhravanOverlay.classList.remove('active'); dhravanLightOrb.classList.remove('active'); }
+    function openDhravan() { if (dhravanActive) return; dhravanActive = true; document.body.style.overflow = 'hidden'; if (dhravanBackdrop) dhravanBackdrop.classList.add('active'); if (dhravanOverlay) dhravanOverlay.classList.add('active'); if (dhravanLightOrb) dhravanLightOrb.classList.add('active'); if (dhravanStatus) dhravanStatus.textContent = 'INITIALIZING...'; setTimeout(() => { if (dhravanStatus) dhravanStatus.textContent = 'TAP THE ORB TO SPEAK'; speakResponse("Greetings. I am DHRΔVΔN, the neural interface of Deven Goyal's portfolio. Tap the orb and ask me anything about Deven's skills, projects, or achievements."); }, 1000); }
+    function closeDhravan() { if (!dhravanActive) return; dhravanActive = false; if (speaking) synth.cancel(); if (listening && recognition) try { recognition.stop(); } catch(e) {} stopWaveformAnimation(); if (dhravanOrbIcon) dhravanOrbIcon.classList.remove('listening'); document.body.style.overflow = 'auto'; if (dhravanBackdrop) dhravanBackdrop.classList.remove('active'); if (dhravanOverlay) dhravanOverlay.classList.remove('active'); if (dhravanLightOrb) dhravanLightOrb.classList.remove('active'); }
 
-    dhravanTriggerBtn.addEventListener('click', openDhravan);
-    dhravanCloseBtn.addEventListener('click', closeDhravan);
-    dhravanBackdrop.addEventListener('click', (e) => { if (e.target === dhravanBackdrop) closeDhravan(); });
-    dhravanOrbIcon.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
-    dhravanManualListenBtn.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
+    if (dhravanTriggerBtn) dhravanTriggerBtn.addEventListener('click', openDhravan);
+    if (dhravanCloseBtn) dhravanCloseBtn.addEventListener('click', closeDhravan);
+    if (dhravanBackdrop) dhravanBackdrop.addEventListener('click', (e) => { if (e.target === dhravanBackdrop) closeDhravan(); });
+    if (dhravanOrbIcon) dhravanOrbIcon.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
+    if (dhravanManualListenBtn) dhravanManualListenBtn.addEventListener('click', () => { if (dhravanActive && !speaking) startListening(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dhravanActive) closeDhravan(); });
 
     // More projects indicator

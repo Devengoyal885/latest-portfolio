@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>NEURAL NEXUS | DEVEN GOYAL</title>
-    <!-- External Styles & Scripts (CDN) -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Tailwind Config (Custom Theme) -->
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -25,12 +27,11 @@
             },
         }
     </script>
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="font-body-md text-on-surface bg-background neural-grid">
     <!-- BOOT SEQUENCE -->
-    <div class="boot-screen fixed inset-0 bg-background flex flex-col items-center justify-center" id="boot-sequence">
+    <div class="boot-screen fixed inset-0 bg-background flex flex-col items-center justify-center z-[9999]" id="boot-sequence">
         <div class="relative mb-12"><div class="hexagon-loader"></div><div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings:'FILL'1;">pentagon</span></div></div>
         <div class="text-center space-y-4"><h2 class="font-label-sm text-label-sm tracking-[0.5em] text-primary">NEURAL NEXUS</h2><p class="font-system-log text-system-log text-on-surface-variant/60">DHRΔVΔN v2.084 — SYSTEM INITIALIZATION</p></div>
         <div class="w-64 mt-12 space-y-2"><div class="flex justify-between font-system-log text-system-log text-primary-fixed-dim"><span>BOOT PROGRESS</span><span id="boot-percent">0%</span></div><div class="h-1 bg-surface-container-highest overflow-hidden"><div class="h-full bg-primary-container transition-all duration-300" id="boot-bar" style="width:0%"></div></div></div>
@@ -50,7 +51,7 @@
             <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#resume"><span class="material-symbols-outlined">description</span><span class="nav-label">Resume</span></a>
             <a class="flex items-center gap-6 py-4 px-6 text-on-surface-variant/60 font-label-sm transition-all duration-300 hover:text-primary hover:bg-surface-container-high/50" href="#contact"><span class="material-symbols-outlined">alternate_email</span><span class="nav-label">Contact</span></a>
         </nav>
-        <div class="px-6"><a href="patent.html" target="_blank" class="w-full py-4 border border-primary-fixed-dim/30 text-primary-fixed-dim font-label-sm tracking-widest hover:bg-primary-fixed-dim/10 hover:bloom-primary transition-all duration-300 text-xs block text-center">Publication</a></div>
+        <div class="px-6"><a href="publication.html" target="_blank" class="w-full py-4 border border-primary-fixed-dim/30 text-primary-fixed-dim font-label-sm tracking-widest hover:bg-primary-fixed-dim/10 hover:bloom-primary transition-all duration-300 text-xs block text-center">Publications</a></div>
     </aside>
 
     <main class="ml-20 md:ml-24 neural-grid min-h-screen">
@@ -59,7 +60,7 @@
             <div class="flex gap-6 pointer-events-auto"><button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined">sensors</span></button><button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined">terminal</span></button></div>
         </header>
 
-        <!-- HOME SECTION -->
+        <!-- HOME SECTION (full content) -->
         <section class="min-h-screen flex items-center justify-center relative overflow-hidden px-8 md:px-24" id="home">
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20"><div class="w-[800px] h-[800px] border border-primary-fixed-dim/20 rounded-full animate-pulse"></div><div class="absolute w-[600px] h-[600px] border border-tertiary-fixed-dim/20 rotate-45 animate-spin"></div></div>
             <div class="home-container w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -67,10 +68,10 @@
                     <h1 class="home-name text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-white via-primary to-primary-fixed-dim bg-clip-text text-transparent mb-4">Deven Goyal</h1>
                     <div class="typewriter-container h-20 mb-8"><span class="typewriter-text text-3xl md:text-4xl" id="typewriter"></span><span class="cursor text-3xl">|</span></div>
                     <div class="social-icons flex justify-center lg:justify-start gap-6 mb-10">
-                        <a href="https://www.linkedin.com/in/deven-goyal/" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Devengoyal885" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-github"></i></a>
-                        <a href="https://x.com/DevenGoyal3091" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/deven_goyal.28/" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/deven-goyal/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Devengoyal885" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/DevenGoyal3091" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/deven_goyal.28/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-white text-xl hover:bg-primary hover:text-black transition-all"><i class="fab fa-instagram"></i></a>
                     </div>
                     <div class="home-buttons flex gap-6 justify-center lg:justify-start">
                         <a href="#contact" class="btn btn-primary px-8 py-3 bg-primary-fixed-dim text-on-primary rounded-full font-bold shadow-lg hover:scale-105 hover:bg-primary-container transition-all duration-300 bloom-primary">Get In Touch</a>
@@ -94,14 +95,14 @@
             <div class="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-3xl animate-bounce cursor-pointer"><i class="fas fa-chevron-down"></i></div>
         </section>
 
-        <!-- BIOMETRIC PROFILE -->
+        <!-- BIOMETRIC PROFILE (full) -->
         <section class="min-h-screen py-32 px-8 md:px-24" id="biometric"><div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center"><div class="space-y-12"><div><p class="font-system-log text-system-log text-primary-fixed-dim mb-4">ORIGIN_LOG: PROTOCOL_BETA</p><h2 class="font-display-lg text-headline-lg font-bold text-white uppercase leading-none">BIOMETRIC</h2><h2 class="font-display-lg text-headline-lg font-bold text-primary-fixed-dim uppercase leading-none glow-cyan">PROFILE</h2><div class="w-32 h-1 bg-primary-fixed-dim mt-6 shadow-[0_0_15px_#00dbe7]"></div></div><div class="space-y-8 font-body-md text-on-surface-variant/80 text-lg leading-relaxed"><p>Deven Goyal — creator, coder, and innovator passionate about blending AI with human-centric engineering. His journey defines optimizing complexity into elegant high-performance solutions. Soon to be one of the youngest engineers to graduate from Chandigarh University.</p><p>With a core objective centered on building next-gen neural interfaces and autonomous frameworks, he operates at the bleeding edge of innovation.</p></div><div class="grid grid-cols-2 gap-y-4"><p class="col-span-2 font-system-log text-system-log text-primary-fixed-dim">CORE_INTEL: STRENGTHS</p><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>PROBLEM SOLVING</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>CRITICAL THINKING</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>CREATIVITY</span></div><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span><span>NEURAL DESIGN</span></div></div></div><div class="relative group"><div class="aspect-square glass-panel rounded-lg relative overflow-hidden p-12 flex flex-col items-center justify-center"><div class="absolute top-4 right-4 font-system-log text-[10px] text-primary-fixed-dim/40 z-10">SCAN_MODE: ACTIVE</div><div class="flex flex-col items-center justify-center"><div class="relative"><span class="material-symbols-outlined text-[120px] text-primary-fixed-dim/20 group-hover:text-primary-fixed-dim/40 transition-all duration-700">fingerprint</span><div class="absolute inset-0 flex items-center justify-center"><div class="w-48 h-48 border-2 border-primary-fixed-dim/30 rounded-full animate-ping"></div></div><div class="absolute inset-0 flex items-center justify-center"><div class="w-32 h-32 border border-primary-fixed-dim/15 rounded-full animate-pulse"></div></div></div><p class="font-system-log text-system-log text-on-surface-variant/40 mt-10">BIOMETRIC_SCAN_ACTIVE</p><p class="font-system-log text-[10px] text-primary-fixed-dim/50 mt-2">NEURAL_PATTERN_VERIFIED</p></div><div class="w-full max-w-xs h-1 bg-surface-container-highest mt-10 relative overflow-hidden"><div class="absolute top-0 left-0 h-full bg-primary-fixed-dim shadow-[0_0_10px_#00dbe7] animate-pulse" style="width:92%"></div></div><div class="flex gap-4 mt-6"><span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-ping"></span><span class="w-2 h-2 rounded-full bg-primary-fixed-dim/60 animate-ping" style="animation-delay:0.3s"></span><span class="w-2 h-2 rounded-full bg-primary-fixed-dim/30 animate-ping" style="animation-delay:0.6s"></span></div></div></div></div></section>
 
         <!-- ACHIEVEMENT VAULT -->
         <section class="py-32 px-8 md:px-24 bg-surface-container-lowest/30" id="achievements"><div class="max-w-7xl mx-auto"><h2 class="font-headline-lg text-headline-lg text-white text-center mb-16">ACHIEVEMENT VAULT</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="achievements-grid"></div></div></section>
 
-        <!-- INNOVATION ARCHIVE -->
-        <section class="min-h-screen py-32 px-8 md:px-24" id="innovation-archive"><div class="max-w-7xl mx-auto"><div class="mb-16"><p class="font-system-log text-system-log text-primary-fixed-dim mb-2">— REPOSITORY V4.0.2</p><h2 class="font-display-lg text-3xl md:text-5xl text-white font-bold uppercase">INNOVATION <span class="text-primary-fixed-dim glow-cyan">ARCHIVE</span></h2></div><div class="project-set" data-project-set="1"><p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_01</p><div class="grid grid-cols-1 md:grid-cols-12 gap-8"><div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://bharat-intelligence-delta.vercel.app/"><div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative"><img class="w-full h-full object-cover rounded-lg border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZhlD1topQnq4hiKwePo_XEFqNj1neZ2UAH6jWsmgocdaYtXsseELqbLc10X38Pg00CPCp7q4mbO3MMX7zQnqlRKW0-adbe0oito2_g3rwwbGXZoz1ivqwe1iBZgoUi1V8opPxEtP-D0QBdZz3q0RxYxzs1P7PxJXr5B46TfwCdmvxHM967K7AL_5C6r5CriiyhwnGGuEbFRpFpY9bXUuoMN44qRRdQK_n31FBtQgCtRwFZ3-RdrUhxprAwYlA-_NGbgvDq4JfcGm" alt="Bharat Intelligence" loading="lazy"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-primary"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-secondary-container bg-secondary-container/10 px-3 py-1 rounded-full text-xs">MISSION MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Bharat Intelligence</h3><p class="font-body-md text-on-surface-variant mb-6">A localized Large Language Model framework engineered for cultural linguistic nuances and sovereign data integrity.</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-primary text-xs flex items-center gap-2"><span class="w-2 h-2 bg-primary animate-ping rounded-full"></span> OPERATIONAL</p></div><div><p class="text-xs text-outline">PRIORITY</p><p class="text-primary text-xs">OMEGA-LEVEL</p></div></div></div></div></div><div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://github.com/Devengoyal885/MailIQ"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary">mail_lock</span></div><span class="text-[10px] text-primary/30">MODULE: SYNC_04</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">MailIQ</h3><p class="font-body-md text-on-surface-variant">Predictive communication synthesizer that filters cognitive noise and prioritizes neural-intent responses.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-primary w-[85%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>SYNCHRONIZATION</span><span>85%</span></div></div></div><div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://github.com/Devengoyal885/Early-Detection-of-Neurological-Disorder-"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-error">neurology</span><h3 class="font-headline-lg text-headline-lg text-primary">Neuro-Scan Alpha</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Deep learning architecture for early-stage neurological disorder detection through gaze tracking and micro-expression analysis.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">PYTHON</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">TENSORFLOW</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">BIO-METRICS</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">REAL-TIME TELEMETRY</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">ACCURACY</span><span class="text-primary">99.4%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">LATENCY</span><span class="text-primary">12ms</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">SCAN_DEPTH</span><span class="text-primary">LAYER_07</span></div></div></div></div></div></div></div><div class="project-set" data-project-set="2"><p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_02</p><div class="grid grid-cols-1 md:grid-cols-12 gap-8"><div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://roadwatchai.netlify.app/"><div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative bg-gradient-to-br from-blue-900/40 to-teal-900/40 rounded-lg flex items-center justify-center border border-primary/20"><span class="material-symbols-outlined text-[80px] text-primary-fixed-dim/40">Road</span><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-green-400"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-green-400 bg-green-400/10 px-3 py-1 rounded-full text-xs">Location MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Roadwatch Ai</h3><p class="font-body-md text-on-surface-variant mb-6"> Real-time road anomaly detection, traffic monitoring, and emergency routing using computer vision & edge AI for smarter city infrastructure</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-green-400 text-xs flex items-center gap-2"><span class="w-2 h-2 bg-green-400 animate-ping rounded-full"></span> ACTIVE</p></div></div></div></div></div><div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://vendorhub-indol.vercel.app/"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-amber-400/10 flex items-center justify-center"><span class="material-symbols-outlined text-amber-400">finance_chip</span></div><span class="text-[10px] text-primary/30">MODULE: FIN_09</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">VendorHub</h3><p class="font-body-md text-on-surface-variant">Hyperlocal multi-vendor marketplace platform connecting local sellers with buyers through an intelligent discovery and management system.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-amber-400 w-[72%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>COMPLETION</span><span>72%</span></div></div></div><div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card" data-project-link="https://github.com/Devengoyal885/LowLightVision_ArcLight_DivyaVerma"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-yellow-400">electric_bolt</span><h3 class="font-headline-lg text-headline-lg text-primary">Low Light Vision</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Real-time underwater image enhancement and color correction using deep learning for improved visibility in murky aquatic conditions.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">IOT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">MQTT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">REACT</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">DEPLOYMENT STATS</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">NODES</span><span class="text-yellow-400">1,200+</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">UPTIME</span><span class="text-yellow-400">99.97%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">EFFICIENCY</span><span class="text-yellow-400">94%</span></div></div></div></div></div></div></div><div class="text-center mb-16" id="moreProjectsIndicator"><p class="font-system-log text-system-log text-primary-fixed-dim/50 animate-pulse"><span class="material-symbols-outlined align-middle">expand_more</span> SCROLL TO REVEAL MORE PROJECTS <span class="material-symbols-outlined align-middle">expand_more</span></p></div><div class="mt-12"><div class="flex items-center gap-6 mb-8"><h3 class="font-display-lg text-2xl text-white uppercase">PUBLISHED PATENTS</h3><div class="h-px bg-outline-variant/30 flex-grow"></div><span class="font-system-log text-xs text-outline">INTELLECTUAL_PROPERTY_LOG</span></div><div class="patents-scroll-container" id="patentsScrollContainer"><div class="space-y-4" id="patents-list"></div></div><p class="font-system-log text-[10px] text-primary-fixed-dim/40 mt-4 text-right"><span class="material-symbols-outlined text-xs align-middle">swipe_vertical</span> SCROLL FOR MORE PATENTS</p></div></div></section>
+        <!-- INNOVATION ARCHIVE (full, with all projects) -->
+        <section class="min-h-screen py-32 px-8 md:px-24" id="innovation-archive"><div class="max-w-7xl mx-auto"><div class="mb-16"><p class="font-system-log text-system-log text-primary-fixed-dim mb-2">— REPOSITORY V4.0.2</p><h2 class="font-display-lg text-3xl md:text-5xl text-white font-bold uppercase">INNOVATION <span class="text-primary-fixed-dim glow-cyan">ARCHIVE</span></h2></div><div class="project-set" data-project-set="1"><p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_01</p><div class="grid grid-cols-1 md:grid-cols-12 gap-8"><div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://bharat-intelligence-delta.vercel.app/"><div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative"><img class="w-full h-full object-cover rounded-lg border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZhlD1topQnq4hiKwePo_XEFqNj1neZ2UAH6jWsmgocdaYtXsseELqbLc10X38Pg00CPCp7q4mbO3MMX7zQnqlRKW0-adbe0oito2_g3rwwbGXZoz1ivqwe1iBZgoUi1V8opPxEtP-D0QBdZz3q0RxYxzs1P7PxJXr5B46TfwCdmvxHM967K7AL_5C6r5CriiyhwnGGuEbFRpFpY9bXUuoMN44qRRdQK_n31FBtQgCtRwFZ3-RdrUhxprAwYlA-_NGbgvDq4JfcGm" alt="Bharat Intelligence" loading="lazy"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-primary"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-secondary-container bg-secondary-container/10 px-3 py-1 rounded-full text-xs">MISSION MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Bharat Intelligence</h3><p class="font-body-md text-on-surface-variant mb-6">A localized Large Language Model framework engineered for cultural linguistic nuances and sovereign data integrity.</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-primary text-xs flex items-center gap-2"><span class="w-2 h-2 bg-primary animate-ping rounded-full"></span> OPERATIONAL</p></div><div><p class="text-xs text-outline">PRIORITY</p><p class="text-primary text-xs">OMEGA-LEVEL</p></div></div></div></div></div><div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://github.com/Devengoyal885/MailIQ"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary">mail_lock</span></div><span class="text-[10px] text-primary/30">MODULE: SYNC_04</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">MailIQ</h3><p class="font-body-md text-on-surface-variant">Predictive communication synthesizer that filters cognitive noise and prioritizes neural-intent responses.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-primary w-[85%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>SYNCHRONIZATION</span><span>85%</span></div></div></div><div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://github.com/Devengoyal885/Arclight_Early_Detection_of_Neurological_Disorders"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-error">neurology</span><h3 class="font-headline-lg text-headline-lg text-primary">Neuro-Scan Alpha</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Deep learning architecture for early-stage neurological disorder detection through gaze tracking and micro-expression analysis.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">PYTHON</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">TENSORFLOW</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">BIO-METRICS</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">REAL-TIME TELEMETRY</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">ACCURACY</span><span class="text-primary">99.4%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">LATENCY</span><span class="text-primary">12ms</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">SCAN_DEPTH</span><span class="text-primary">LAYER_07</span></div></div></div></div></div></div></div><div class="project-set" data-project-set="2"><p class="font-system-log text-system-log text-primary-fixed-dim/60 mb-6">— PROJECT_SET_02</p><div class="grid grid-cols-1 md:grid-cols-12 gap-8"><div class="md:col-span-8 group relative overflow-hidden bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://roadwatchai.netlify.app/"><div class="flex flex-col md:flex-row gap-8 items-center"><div class="w-full md:w-1/2 aspect-square relative bg-gradient-to-br from-blue-900/40 to-teal-900/40 rounded-lg flex items-center justify-center border border-primary/20"><span class="material-symbols-outlined text-[80px] text-primary-fixed-dim/40">road</span><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><svg class="w-full h-full opacity-30" viewBox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="0.5" class="text-green-400"></circle></svg></div></div><div class="w-full md:w-1/2"><span class="font-label-caps text-label-caps text-green-400 bg-green-400/10 px-3 py-1 rounded-full text-xs">Location MODULE</span><h3 class="font-headline-lg text-headline-lg text-primary mt-4 mb-2">Roadwatch Ai</h3><p class="font-body-md text-on-surface-variant mb-6"> Real-time road anomaly detection, traffic monitoring, and emergency routing using computer vision & edge AI for smarter city infrastructure</p><div class="grid grid-cols-2 gap-4 border-t pt-6 border-outline-variant/30"><div><p class="text-xs text-outline">STATUS</p><p class="text-green-400 text-xs flex items-center gap-2"><span class="w-2 h-2 bg-green-400 animate-ping rounded-full"></span> ACTIVE</p></div></div></div></div></div><div class="md:col-span-4 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://vendorhub-indol.vercel.app/"><div><div class="flex justify-between items-start mb-8"><div class="w-12 h-12 rounded bg-amber-400/10 flex items-center justify-center"><span class="material-symbols-outlined text-amber-400">finance_chip</span></div><span class="text-[10px] text-primary/30">MODULE: FIN_09</span></div><h3 class="font-headline-lg text-headline-lg text-primary mb-2">VendorHub</h3><p class="font-body-md text-on-surface-variant">Hyperlocal multi-vendor marketplace platform connecting local sellers with buyers through an intelligent discovery and management system.</p></div><div class="mt-8"><div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-amber-400 w-[72%]"></div></div><div class="flex justify-between text-[10px] text-outline mt-2"><span>COMPLETION</span><span>72%</span></div></div></div><div class="md:col-span-12 bg-hologram-glass backdrop-blur-xl border border-outline-variant/40 rounded-xl p-8 hologram-card cursor-pointer" data-project-link="https://github.com/Devengoyal885/LowLightVision_ArcLight_DivyaVerma"><div class="flex flex-col md:flex-row gap-12"><div class="flex-1"><div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-yellow-400">electric_bolt</span><h3 class="font-headline-lg text-headline-lg text-primary">Low Light Vision</h3></div><p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Real-time underwater image enhancement and color correction using deep learning for improved visibility in murky aquatic conditions.</p><div class="flex flex-wrap gap-4"><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">IOT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">MQTT</span><span class="px-4 py-2 bg-surface-container-high rounded-lg text-xs">REACT</span></div></div><div class="w-full md:w-1/3 bg-black/40 rounded-xl p-6"><p class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 text-xs">DEPLOYMENT STATS</p><div class="space-y-3"><div class="flex justify-between text-[10px]"><span class="text-outline">NODES</span><span class="text-yellow-400">1,200+</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">UPTIME</span><span class="text-yellow-400">99.97%</span></div><div class="flex justify-between text-[10px]"><span class="text-outline">EFFICIENCY</span><span class="text-yellow-400">94%</span></div></div></div></div></div></div></div><div class="text-center mb-16" id="moreProjectsIndicator"><p class="font-system-log text-system-log text-primary-fixed-dim/50 animate-pulse"><span class="material-symbols-outlined align-middle">expand_more</span> SCROLL TO REVEAL MORE PROJECTS <span class="material-symbols-outlined align-middle">expand_more</span></p></div><div class="mt-12"><div class="flex items-center gap-6 mb-8"><h3 class="font-display-lg text-2xl text-white uppercase">PUBLISHED PATENTS</h3><div class="h-px bg-outline-variant/30 flex-grow"></div><span class="font-system-log text-xs text-outline">INTELLECTUAL_PROPERTY_LOG</span></div><div class="patents-scroll-container" id="patentsScrollContainer"><div class="space-y-4" id="patents-list"></div></div><p class="font-system-log text-[10px] text-primary-fixed-dim/40 mt-4 text-right"><span class="material-symbols-outlined text-xs align-middle">swipe_vertical</span> SCROLL FOR MORE PATENTS</p></div></div></section>
 
         <!-- SYSTEM CERTIFICATIONS -->
         <section class="py-32 overflow-hidden bg-background" id="certifications"><div class="px-8 md:px-24 mb-16"><h2 class="font-headline-lg text-headline-lg text-white text-center">SYSTEM CERTIFICATIONS</h2></div><div class="flex gap-8 animate-marquee whitespace-nowrap py-12" id="cert-marquee"></div></section>
@@ -109,13 +110,144 @@
         <!-- ENDORSEMENTS -->
         <section class="py-32 px-8 md:px-24 bg-surface-container-lowest overflow-hidden" id="endorsements"><div class="max-w-7xl mx-auto mb-16"><p class="font-mono text-[10px] text-primary tracking-[0.3em]">VERIFIED FEEDBACK</p><h2 class="text-4xl md:text-5xl font-bold text-white">SYSTEM ENDORSEMENTS</h2></div><div class="relative w-full overflow-hidden"><div class="animate-marquee gap-8 flex" id="endorsements-slider"></div></div></section>
 
-        <!-- ENHANCED RESUME SECTION -->
+        <!-- RESUME ENVELOPE -->
         <section class="py-16 px-8 md:px-24" id="resume"><div class="resume-section"><div class="resume-container" id="resumeEnvelope"><div class="envelope" id="envelopeInner"><div class="envelope-front"><i class="fas fa-envelope"></i><p>OPEN LETTER</p><p style="font-size: 10px; letter-spacing: 1px;">click to reveal</p></div><div class="envelope-back"><div class="letter-content"><h3>DEVEN GOYAL</h3><div class="subtitle">Full Stack Developer | AI Enthusiast | Innovator</div><div class="bio">B.Tech CSE @ Chandigarh University | Patent Holder | Hackathon Winner</div><div class="resume-btn-group"><button class="resume-btn" id="viewResumeBtn">📄 VIEW PDF</button><button class="resume-btn resume-btn-outline" id="downloadResumeBtn">⬇ DOWNLOAD</button></div><p class="resume-hint">click envelope again to close</p></div></div></div></div></div></section>
 
         <!-- CONTACT -->
-        <section class="min-h-screen py-32 px-8 md:px-24 flex flex-col items-center justify-center text-center relative overflow-hidden" id="contact"><div class="absolute inset-0 z-0 pointer-events-none" id="neural-particles"></div><div class="relative z-10 space-y-12 max-w-3xl"><h2 class="font-display-lg text-4xl md:text-6xl text-white font-bold leading-tight">INITIATE <span class="text-primary-fixed-dim glow-cyan">TRANSMISSION</span></h2><p class="font-body-md text-on-surface-variant/60 text-xl">The Neural Nexus is always seeking synergistic connections with fellow innovators.</p><div class="flex flex-wrap justify-center gap-8"><a href="https://github.com/Devengoyal885" target="_blank" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center group-hover:border-primary-fixed-dim transition-all"><span class="material-symbols-outlined text-white text-3xl">terminal</span></div><span class="text-[10px] tracking-widest">GitHub</span></a><a href="https://www.linkedin.com/in/deven-goyal/" target="_blank" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-white text-3xl">hub</span></div><span class="text-[10px] tracking-widest">LinkedIn</span></a><a href="mailto:devenxcelerate@gmail.com" class="group flex flex-col items-center gap-4"><div class="w-16 h-16 glass-panel rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-white text-3xl">alternate_email</span></div><span class="text-[10px] tracking-widest">Email</span></a></div><div class="pt-24"><h3 class="font-headline-lg text-2xl text-white tracking-[0.4em] mb-4">THANK YOU FOR ENTERING THE NEURAL NEXUS</h3><p class="font-system-log text-[10px] text-primary-fixed-dim">CONNECTION_TERMINATED // 0x000000</p></div></div></section>
+<section class="min-h-screen py-32 px-8 md:px-24 flex flex-col items-center justify-center text-center relative overflow-hidden" id="contact">
 
-        <footer class="fixed bottom-0 left-20 md:left-24 right-0 z-40 flex justify-between items-center px-8 py-4 bg-surface-container-lowest/50 backdrop-blur-md border-t border-outline-variant/10 pointer-events-none"><div class="font-system-log text-system-log text-primary-fixed-dim uppercase text-xs">SYSTEM STATUS: OPTIMAL | KERNEL: 0xF0492A_DHRAVAN_V2.0</div><div class="flex gap-8"><span class="text-[10px] text-outline">ARCHIVE_DEPTH</span><span class="text-[10px] text-outline">COMPUTE_LOAD</span><span class="text-[10px] text-outline">UPTIME_99.999%</span></div></footer>
+    <div class="absolute inset-0 z-0 pointer-events-none" id="neural-particles"></div>
+
+    <div class="relative z-10 max-w-5xl w-full">
+
+        <h2 class="font-display-lg text-4xl md:text-6xl text-white font-bold leading-tight mb-6">
+            INITIATE
+            <span class="text-primary-fixed-dim glow-cyan">TRANSMISSION</span>
+        </h2>
+
+        <p class="font-body-md text-on-surface-variant/70 text-xl max-w-3xl mx-auto mb-16">
+            Connect with me across research, development, open source, competitive programming,
+            certifications, and professional networks.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+
+            <!-- GitHub -->
+            <a href="https://github.com/Devengoyal885"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">terminal</span>
+
+                <h4 class="text-white font-semibold">GitHub</h4>
+                <p class="text-xs text-on-surface-variant mt-1">Devengoyal885</p>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/deven-goyal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">hub</span>
+
+                <h4 class="text-white font-semibold">LinkedIn</h4>
+                <p class="text-xs text-on-surface-variant mt-1">@deven-goyal</p>
+            </a>
+
+            <!-- LeetCode -->
+            <a href="https://leetcode.com/u/Devengoyal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">code</span>
+
+                <h4 class="text-white font-semibold">LeetCode</h4>
+                <p class="text-xs text-on-surface-variant mt-1">Devengoyal</p>
+            </a>
+
+            <!-- Hashnode -->
+            <a href="https://hashnode.com/@devengoyal"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">edit_note</span>
+
+                <h4 class="text-white font-semibold">Hashnode</h4>
+                <p class="text-xs text-on-surface-variant mt-1">@devengoyal</p>
+            </a>
+
+            <!-- ORCID -->
+            <a href="https://orcid.org/0009-0004-0480-1048"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">fingerprint</span>
+
+                <h4 class="text-white font-semibold">ORCID</h4>
+                <p class="text-xs text-on-surface-variant mt-1">0009-0004-0480-1048</p>
+            </a>
+
+            <!-- Credly -->
+            <a href="https://www.credly.com/users/deven-goyal_deven-goyal_"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">military_tech</span>
+
+                <h4 class="text-white font-semibold">Credly</h4>
+                <p class="text-xs text-on-surface-variant mt-1">deven-goyal</p>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:devenxcelerate@gmail.com"
+                class="group glass-panel rounded-xl p-6 flex flex-col items-center hover:border-primary-fixed-dim transition-all duration-300">
+
+                <span class="material-symbols-outlined text-4xl text-white mb-4">alternate_email</span>
+
+                <h4 class="text-white font-semibold">Email</h4>
+                <p class="text-xs text-on-surface-variant mt-1">
+                    devenxcelerate@gmail.com
+                </p>
+            </a>
+
+        </div>
+
+        <div class="pt-24">
+
+            <h3 class="font-headline-lg text-2xl text-white tracking-[0.35em] mb-4">
+                THANK YOU FOR VISITING
+            </h3>
+
+            <p class="font-system-log text-[10px] text-primary-fixed-dim tracking-[0.3em]">
+                CONNECTION_ESTABLISHED // READY_FOR_COLLABORATION
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+        <!-- SECURE FOOTER WITH LIVE METRICS (UPDATED) -->
+        <footer class="fixed bottom-0 left-20 md:left-24 right-0 z-40 flex justify-between items-center px-8 py-4 bg-surface-container-lowest/50 backdrop-blur-md border-t border-outline-variant/10 pointer-events-auto">
+            <div class="font-system-log text-primary-fixed-dim uppercase text-xs flex items-center gap-3 flex-wrap">
+                <span class="status-metric inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> LIVE</span>
+                <span class="status-metric inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full"><span class="material-symbols-outlined text-[14px]">receipt</span> PATENTS: 12</span>
+                <span class="status-metric inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full"><span class="material-symbols-outlined text-[14px]">menu_book</span> BOOKS: 6</span>
+                <span class="status-metric inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full" id="linkedinFollowersSpan"><i class="fab fa-linkedin text-[12px]"></i> <span id="followersCount">2,150+</span> FOLLOWERS</span>
+            </div>
+            <div class="flex gap-8 text-[10px] text-outline">
+                <span>ARCHIVE_DEPTH: v4.2</span>
+                <span>COMPUTE_LOAD: 12%</span>
+                <span>UPTIME: 99.999%</span>
+                <span>© 2026</span>
+            </div>
+        </footer>
     </main>
 
     <!-- Achievement Modal -->
@@ -127,7 +259,6 @@
     <div class="dhravan-light-orb" id="dhravanLightOrb"></div>
     <div class="dhravan-overlay" id="dhravanOverlay"><div class="dhravan-interface" id="dhravanInterface"><button class="dhravan-close-btn" id="dhravanCloseBtn">✕</button><p class="font-system-log text-[10px] text-primary-fixed-dim/60 tracking-[0.3em] mb-4">DHRΔVΔN v2.084</p><div class="dhravan-orb-icon" id="dhravanOrbIcon"><span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL'1;">psychology</span></div><p class="dhravan-status" id="dhravanStatus">TAP THE ORB TO SPEAK</p><p class="dhravan-transcript" id="dhravanTranscript"></p><div class="dhravan-waveform" id="dhravanWaveform"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><button class="dhravan-voice-btn" id="dhravanManualListenBtn"><span class="material-symbols-outlined text-xs align-middle">mic</span> TAP TO SPEAK</button><p class="font-system-log text-[9px] text-on-surface-variant/25 mt-3" id="dhravanHint">Ask about Deven's skills, projects, or achievements</p></div></div>
 
-    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

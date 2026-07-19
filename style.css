@@ -125,3 +125,7 @@ aside.compact-nav:hover .nav-label { opacity: 1; }
 .dhravan-voice-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; border-radius: 20px; border: 1px solid rgba(0, 200, 240, 0.5); background: rgba(0, 180, 240, 0.1); color: rgba(200, 230, 255, 0.9); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
 .dhravan-voice-btn:hover { background: rgba(0, 200, 240, 0.25); border-color: rgba(0, 220, 255, 0.8); box-shadow: 0 0 20px rgba(0, 200, 240, 0.3); }
 .dhravan-transcript { font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; color: rgba(200, 220, 240, 0.7); min-height: 20px; margin-top: 8px; font-style: italic; }
+
+/* Status bar custom styles */
+.status-metric { transition: all 0.3s ease; }
+.status-metric:hover { background: rgba(0, 219, 231, 0.2); transform: translateY(-1px); }

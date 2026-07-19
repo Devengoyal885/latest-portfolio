@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PUBLICATION_LOG // DEVEN GOYAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #060a0b;
+      --bg-soft: #0a1112;
+      --surface: #0d1516;
+      --surface-hi: #101c1d;
+      --border: rgba(120, 255, 240, 0.14);
+      --border-hi: rgba(120, 255, 240, 0.32);
+      --text: #d9ece9;
+      --text-dim: #6d8a87;
+      --text-faint: #425756;
+      --accent: #35f2d6;
+      --accent-dim: rgba(53, 242, 214, 0.14);
+      --amber: #ffb454;
+      --amber-dim: rgba(255, 180, 84, 0.14);
+      --cat-fiction: #b9a6ff;
+      --cat-mindset: #ffb454;
+      --cat-reflective: #ff90a8;
+      --cat-sleep: #7ec8ff;
+      --cat-scitech: #35f2d6;
+      --cat-other: #9aa8a6;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: #04100e; }
+    .overlay-fx {
+      position: fixed; inset: 0; pointer-events: none; z-index: 200; mix-blend-mode: overlay; opacity: 0.5;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+    }
+    .vignette {
+      position: fixed; inset: 0; pointer-events: none; z-index: 199;
+      background: radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(0,0,0,0.55) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .eyebrow {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--accent); display: inline-block; }
+
+    /* NAV */
+    header.nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 5vw;
+      background: rgba(6,10,11,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-id { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+    .nav-id span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .nav-links a { color: var(--text-dim); transition: color .2s ease; position: relative; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.home { color: var(--text); border: 1px solid var(--border-hi); padding: 6px 12px; border-radius: 2px; }
+    .nav-links a.home:hover { background: var(--accent-dim); border-color: var(--accent); }
+    @media (max-width:760px){ .nav-links{ gap:14px; font-size:10px; } .nav-links span.lbl{display:none;} }
+
+    /* HERO */
+    .hero { padding: 90px 5vw 60px; max-width: 1200px; margin: 0 auto; }
+    .boot {
+      font-family: var(--mono); font-size: 12px; color: var(--text-faint); min-height: 110px;
+      border-left: 2px solid var(--border-hi); padding-left: 16px; margin-bottom: 36px;
+    }
+    .boot p { margin-bottom: 4px; }
+    .boot .ok { color: var(--accent); }
+    .boot .cursor { display: inline-block; width: 7px; height: 13px; background: var(--accent); animation: blink 1s step-end infinite; vertical-align: -2px; }
+    @keyframes blink { 50%{ opacity:0; } }
+    .hero h1 {
+      font-family: var(--mono); font-weight: 800; text-transform: uppercase;
+      font-size: clamp(34px, 6vw, 68px); letter-spacing: 1px; line-height: 1.02;
+      background: linear-gradient(120deg, #f2fffb 0%, var(--accent) 60%, #7ff6e0 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin-bottom: 18px;
+    }
+    .hero .sub { max-width: 640px; color: var(--text-dim); font-size: 16px; margin-bottom: 38px; }
+    .hero .sub b { color: var(--text); font-weight: 600; }
+    .stats {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border);
+    }
+    .stat { background: var(--bg-soft); padding: 22px 20px; }
+    .stat .n { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--accent); }
+    .stat .l { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-top: 4px; }
+    @media (max-width:700px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+
+    section { padding: 70px 5vw; max-width: 1200px; margin: 0 auto; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; }
+    .section-head h2 { font-family: var(--mono); font-size: clamp(22px,3vw,32px); text-transform: uppercase; letter-spacing: 1px; }
+    .section-note { font-family: var(--mono); font-size: 11px; color: var(--text-faint); max-width: 340px; text-align: right; }
+    @media (max-width:700px){ .section-note{ text-align:left; } }
+
+    /* RESEARCH CARDS */
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 18px; }
+    .paper {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 24px;
+      display: flex; flex-direction: column; gap: 12px; transition: border-color .2s ease, transform .2s ease;
+    }
+    .paper:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .paper .log-id { font-family: var(--mono); font-size: 11px; color: var(--text-faint); letter-spacing: 1px; display: flex; justify-content: space-between; }
+    .paper .log-id .tag { color: var(--accent); border: 1px solid var(--accent-dim); padding: 2px 8px; border-radius: 2px; }
+    .paper h3 { font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.35; color: var(--text); }
+    .paper .desc { font-size: 13.5px; color: var(--text-dim); flex: 1; }
+    .paper .authors { font-family: var(--mono); font-size: 11px; color: var(--text-faint); }
+    .paper .authors b { color: var(--accent); font-weight: 600; }
+    .paper .kw { display: flex; flex-wrap: wrap; gap: 6px; }
+    .paper .kw span { font-family: var(--mono); font-size: 10px; color: var(--text-dim); border: 1px solid var(--border); padding: 3px 8px; border-radius: 20px; }
+    .paper .companion { font-family: var(--mono); font-size: 10.5px; color: var(--amber); border-top: 1px dashed var(--border); padding-top: 10px; }
+    .paper .row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 8px; }
+    .paper .doi { font-family: var(--mono); font-size: 11px; color: var(--text-faint); }
+    .paper .go { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--accent); border: 1px solid var(--accent-dim); padding: 6px 12px; border-radius: 2px; transition: all .2s ease; }
+    .paper .go:hover { background: var(--accent); color: #04100e; border-color: var(--accent); }
+
+    /* BOOKS */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; align-items: center; }
+    .search-box {
+      font-family: var(--mono); font-size: 13px; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 10px 14px; border-radius: 2px; flex: 1; min-width: 220px;
+    }
+    .search-box::placeholder { color: var(--text-faint); }
+    .search-box:focus { outline: none; border-color: var(--accent); }
+    .tab {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-dim); background: transparent; border: 1px solid var(--border); padding: 9px 14px;
+      border-radius: 2px; cursor: pointer; transition: all .2s ease; white-space: nowrap;
+    }
+    .tab:hover { color: var(--text); border-color: var(--border-hi); }
+    .tab.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+    .count-live { font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 20px; }
+    .count-live b { color: var(--accent); }
+
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 16px; }
+    .book {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden;
+      display: flex; flex-direction: column; transition: border-color .2s ease, transform .2s ease;
+    }
+    .book:hover { border-color: var(--cat-color, var(--accent)); transform: translateY(-3px); }
+    .book .cover {
+      height: 130px; position: relative; display: flex; align-items: flex-end; padding: 14px;
+      background:
+        radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--cat-color) 30%, transparent), transparent 60%),
+        linear-gradient(160deg, color-mix(in srgb, var(--cat-color) 22%, #0a1112) 0%, #0a1112 75%);
+      border-bottom: 1px solid var(--border);
+    }
+    .book .cover::before {
+      content: ''; position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--cat-color); box-shadow: 0 0 8px var(--cat-color);
+    }
+    .book .cover .cat-tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--cat-color); }
+    .book .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .book h4 { font-size: 14.5px; font-weight: 600; line-height: 1.3; }
+    .book .sub { font-size: 11.5px; color: var(--text-dim); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .book .meta { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--text-faint); padding-top: 6px; }
+    .book .meta a { color: var(--accent); }
+    .book .meta a:hover { text-decoration: underline; }
+    .no-results { font-family: var(--mono); color: var(--text-faint); font-size: 13px; padding: 30px 0; text-align: center; grid-column: 1/-1; }
+
+    /* PATENTS – placeholder */
+    .patent-panel {
+      border: 1px solid var(--amber-dim); background: linear-gradient(160deg, rgba(255,180,84,0.05), transparent);
+      border-radius: 3px; padding: 40px; text-align: center;
+    }
+    .patent-panel .icon { font-family: var(--mono); font-size: 34px; color: var(--amber); margin-bottom: 14px; }
+    .patent-panel h3 { font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; font-size: 16px; margin-bottom: 10px; }
+    .patent-panel p { color: var(--text-dim); font-size: 13.5px; max-width: 480px; margin: 0 auto; }
+    .patent-panel .status { font-family: var(--mono); font-size: 11px; color: var(--amber); margin-top: 18px; letter-spacing: 1px; }
+
+    footer { border-top: 1px solid var(--border); padding: 50px 5vw; margin-top: 40px; }
+    .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .foot-links { display: flex; gap: 22px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .foot-links a { color: var(--text-dim); }
+    .foot-links a:hover { color: var(--accent); }
+    .foot-copy { font-family: var(--mono); font-size: 11px; color: var(--text-faint); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .boot .cursor { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay-fx"></div>
+<div class="vignette"></div>
+
+<header class="nav">
+  <div class="nav-id">DEVEN<span>_</span>GOYAL // <span>ARCHIVE</span></div>
+  <nav class="nav-links">
+    <a href="https://devengoyal.netlify.app" class="home">◂ Main Site</a>
+    <a href="#research"><span class="lbl">Research</span></a>
+    <a href="#books"><span class="lbl">Books</span></a>
+    <a href="#patents"><span class="lbl">Patents</span></a>
+    <a href="#contact"><span class="lbl">Contact</span></a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="boot" id="boot"></div>
+  <h1>Publication<br>Archive</h1>
+  <p class="sub">
+    A full record of <b>Deven Goyal's</b> published research and books — peer-reviewed papers indexed
+    on Zenodo under ORCID <b>0009-0004-0480-1048</b>, and titles published on Amazon KDP. Chandigarh University, Punjab.
+  </p>
+  <div class="stats reveal" id="statsBlock">
+    <div class="stat"><div class="n">08</div><div class="l">Research Papers</div></div>
+    <div class="stat"><div class="n">37</div><div class="l">Published Books</div></div>
+    <div class="stat"><div class="n">SYNC</div><div class="l">Patents Pending</div></div>
+  </div>
+</div>
+
+<section id="research">
+  <div class="section-head reveal">
+    <h2>Research Log</h2>
+    <div class="section-note">Zenodo-indexed conference papers · CC BY 4.0 · Chandigarh University</div>
+  </div>
+  <div class="research-grid" id="researchGrid"></div>
+</section>
+
+<section id="books">
+  <div class="section-head reveal">
+    <h2>Published Works</h2>
+    <div class="section-note">Live titles on Amazon KDP · fiction, mindset, reflection &amp; science</div>
+  </div>
+  <div class="filters reveal">
+    <input type="text" class="search-box" id="searchBox" placeholder="$ grep --title '...'">
+    <button class="tab active" data-cat="all">All</button>
+    <button class="tab" data-cat="fiction">Fiction Series</button>
+    <button class="tab" data-cat="mindset">Mindset &amp; Self-Mastery</button>
+    <button class="tab" data-cat="reflective">Reflective Pages</button>
+    <button class="tab" data-cat="sleep">Sleep &amp; Recovery</button>
+    <button class="tab" data-cat="scitech">Science &amp; Tech</button>
+  </div>
+  <div class="count-live" id="countLive"></div>
+  <div class="books-grid" id="booksGrid"></div>
+</section>
+
+<section id="patents">
+  <div class="section-head reveal">
+    <h2>IP Registry</h2>
+    <div class="section-note">Patent filings &amp; grants</div>
+  </div>
+  <div class="patent-panel reveal">
+    <div class="icon">◇</div>
+    <h3>Registry Syncing</h3>
+    <p>
+      Patent records haven't been linked to this archive yet. Send over each filing's title, application/grant number,
+      status, and date — this panel will populate with the same log-entry treatment as the research above.
+    </p>
+    <div class="status">STATUS: AWAITING_INPUT</div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="foot-row">
+    <div class="foot-copy">© 2026 DEVEN GOYAL — ARCHIVE_DEPTH v1.0<br />Data synced from Zenodo &amp; Amazon KDP</div>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/deven-goyal/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Devengoyal885" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/DevenGoyal3091" target="_blank" rel="noopener">X</a>
+      <a href="https://orcid.org/0009-0004-0480-1048" target="_blank" rel="noopener">ORCID</a>
+      <a href="mailto:devenxcelerate@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ---------- BOOT SEQUENCE ---------- */
+  const bootLines = [
+    "> INITIALIZING ARCHIVE_ACCESS...",
+    "> AUTHENTICATING ORCID 0009-0004-0480-1048...",
+    "> LOADING 8 RESEARCH LOGS, 37 PUBLISHED WORKS...",
+    "> ACCESS GRANTED <span class='ok'>[OK]</span>"
+  ];
+  const bootEl = document.getElementById('boot');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function typeBoot() {
+    if (reduced) {
+      bootEl.innerHTML = bootLines.map(l => `<p>${l}</p>`).join('');
+      return;
+    }
+    let li = 0;
+    function nextLine() {
+      if (li >= bootLines.length) return;
+      const p = document.createElement('p');
+      bootEl.appendChild(p);
+      let ci = 0;
+      const raw = bootLines[li];
+      const plain = raw.replace(/<[^>]+>/g, '');
+      const interval = setInterval(() => {
+        ci++;
+        p.textContent = plain.slice(0, ci);
+        if (ci >= plain.length) {
+          clearInterval(interval);
+          if (li === bootLines.length - 1) p.innerHTML = raw;
+          li++;
+          setTimeout(nextLine, 160);
+        }
+      }, 14);
+    }
+    nextLine();
+  }
+  typeBoot();
+
+  /* ---------- RESEARCH DATA (ZENODO) ---------- */
+  const PAPERS = [
+    { id: "21030126", title: "Music and Frequencies: An Interdisciplinary Review of Acoustics, Perception, Neuroscience, and Technology", type: "Report", date: "Jun 29, 2026", authors: ["Deven"], desc: "A cross-disciplinary review of frequency as the physical basis of musical pitch — spanning psychoacoustics, neural mechanisms, tuning systems, and computational music analysis.", kw: ["Music", "Acoustics", "Psychoacoustics", "Neuroscience"] },
+    { id: "21058099", title: "Statistical Feature Extraction and Classification of Images", type: "Conference Paper", date: "Jun 30, 2026", authors: ["Deven", "Rashika", "Naina Kumari", "Utkrisht Utpal"], desc: "A Visual–Text–Intermediate (VTI) framework that converts images into structured semantic representations before classification — trading black-box opacity for interpretability.", kw: ["Computer Vision", "Image Classification", "VTI Framework"] },
+    { id: "21058429", title: "Design of an Intelligent Network-Aware Autonomous Storage Architecture for Offline Computing Environments", type: "Conference Paper", date: "Jun 30, 2026", authors: ["Deven", "Dr. Deepti Sharma", "Sushant Kumar", "V. Rithish Pranav"], desc: "A host-independent storage architecture built around a Network Range Memory System (NRMS) — combining onboard power, predictive caching, and biometric/AES security for offline-first file sync.", kw: ["Edge Computing", "Autonomous Storage", "NRMS", "Security"] },
+    { id: "21058654", title: "Analysis of EEG-Based Brain Responses to Music Stimuli Using Statistical and Machine Learning", type: "Conference Paper", date: "Jun 30, 2026", authors: ["Deven", "Rashika", "Utkrisht Utpal", "Naina Kumari"], desc: "Statistical and ML analysis of EEG signals to characterize how the brain enhances and suppresses activity in response to music, with applications in emotion recognition and BCI.", kw: ["EEG", "Neuroscience", "Machine Learning", "Music Cognition"] },
+    { id: "21058863", title: "AI-Driven Web-Based System for Early Detection of Neurological Disorders Using MRI", type: "Conference Paper", date: "Jun 30, 2026", authors: ["Dr Deepti Sharma", "Deven", "Rishabh Verma", "Divya Verma", "Aditya Singh"], desc: "A CNN-based diagnostic pipeline that combines MRI preprocessing, threshold-optimized classification, and a real-time web interface to screen for Alzheimer's Disease and Mild Cognitive Impairment.", kw: ["Deep Learning", "MRI", "Alzheimer's Disease", "Healthcare AI"] },
+    { id: "21159635", title: "Smart Tire Architecture for Enhanced Safety, Energy Efficiency, and Intelligent Mobility", type: "Conference Paper", date: "Jul 3, 2026", authors: ["Deven", "Ridhi"], desc: "A tire-level safety architecture unifying auto-braking, piezoelectric energy harvesting, gyroscopic stability, and GPS speed-limiting for next-gen EVs and autonomous fleets.", kw: ["Smart Tire", "Automotive Safety", "Energy Harvesting", "ITS"] },
+    { id: "21159900", title: "Sleep and its Efficiency", type: "Conference Paper", date: "Jul 3, 2026", authors: ["Deven"], desc: "A systems-level review of NREM/REM architecture, circadian regulation, and glymphatic clearance — linking sleep efficiency to modern disruptors like blue light and bedtime procrastination.", kw: ["Sleep Science", "Circadian Rhythm", "Melatonin", "Cortisol"] },
+    { id: "21159991", title: "Optimized Waste Collection Using AI-Enabled Secure Smart Dustbin Systems", type: "Conference Paper", date: "Jul 3, 2026", authors: ["Dr Vijay Mohan Shrimal", "Deven", "Sushant Kumar", "Ujjwal Upadhyay", "Akash Singh"], desc: "An AI + IoT dustbin architecture with vision-based waste classification, automated segregation, methane recovery, and GPS-optimized collection routing for smart-city deployment.", kw: ["Smart Waste Management", "IoT", "AI Classification", "Sustainability"] }
+  ];
+
+  const researchGrid = document.getElementById('researchGrid');
+  PAPERS.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'paper reveal';
+    el.innerHTML = `
+      <div class="log-id"><span>LOG_${String(i+1).padStart(2,'0')} · ${p.type.toUpperCase()}</span><span class="tag">${p.date}</span></div>
+      <h3>${p.title}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="authors">${p.authors.map(a => a === 'Deven' ? '<b>Deven</b>' : a).join(' · ')}</div>
+      <div class="kw">${p.kw.map(k => `<span>${k}</span>`).join('')}</div>
+      <div class="row">
+        <span class="doi">DOI 10.5281/zenodo.${p.id}</span>
+        <a class="go" href="https://zenodo.org/records/${p.id}" target="_blank" rel="noopener">View Record ↗</a>
+      </div>
+    `;
+    researchGrid.appendChild(el);
+  });
+
+  /* ---------- BOOKS DATA (AMAZON) ---------- */
+  const BOOKS = [
+    { asin: "B0GNJRVQPP", title: "Music and Frequencies", sub: "", cat: "scitech", price: "$1.00", date: "Feb 15, 2026" },
+    { asin: "B0GGJ2DCL4", title: "Quantum Cloud", sub: "", cat: "scitech", price: "$1.00", date: "Jan 13, 2026" },
+    { asin: "B0GGHRMBR2", title: "Animal Protection Magazine", sub: "", cat: "scitech", price: "$0.99", date: "Jan 13, 2026" },
+    { asin: "B0GGHQVXQG", title: "The Science of Sleep", sub: "Understanding Rest, Recovery & the Mind–Body Connection", cat: "sleep", price: "$1.00", date: "Jan 13, 2026" },
+    { asin: "B0GPLKVQKQ", title: "Image Classification", sub: "Companion to the VTI research paper", cat: "scitech", price: "$1.00", date: "Feb 21, 2026" },
+    { asin: "B0GX3B52HB", title: "Conqueror the World", sub: "Part 1 · with Divya Verma", cat: "fiction", price: "$3.00", date: "Apr 16, 2026" },
+    { asin: "B0GXDWPNMS", title: "Conqueror the World", sub: "Part 2", cat: "fiction", price: "$3.00", date: "Apr 16, 2026" },
+    { asin: "B0H33STN1X", title: "Sleep Better Live Better", sub: "", cat: "sleep", price: "$3.00", date: "Jun 23, 2026" },
+    { asin: "B0H5JY81FD", title: "The Quiet Page", sub: "", cat: "reflective", price: "$2.99", date: "Jun 19, 2026" },
+    { asin: "B0H65CX1QN", title: "Letters To My Future Self", sub: "", cat: "reflective", price: "$3.50", date: "Jun 20, 2026" },
+    { asin: "B0H68731MQ", title: "Conquer the World", sub: "Part 3", cat: "fiction", price: "$3.00", date: "Jun 21, 2026" },
+    { asin: "B0H6B5NLQ1", title: "The Last Page", sub: "", cat: "reflective", price: "$3.00", date: "Jun 22, 2026" },
+    { asin: "B0H6C5KS12", title: "The Journey Within", sub: "", cat: "reflective", price: "$3.00", date: "Jun 22, 2026" },
+    { asin: "B0H6DK2GKK", title: "Make Today Count", sub: "", cat: "mindset", price: "$3.00", date: "Jun 23, 2026" },
+    { asin: "B0H6FGMJMN", title: "Success Starts Now", sub: "", cat: "mindset", price: "$3.00", date: "Jun 23, 2026" },
+    { asin: "B0H6FQZHZ4", title: "The Night I Finally Slept", sub: "", cat: "sleep", price: "$3.00", date: "Jun 23, 2026" },
+    { asin: "B0H6KRW9Q4", title: "Conquer the World", sub: "Part II", cat: "fiction", price: "$3.00", date: "Jun 29, 2026" },
+    { asin: "B0H6K2L7F5", title: "The Power of Small Steps", sub: "", cat: "mindset", price: "$3.00", date: "Jun 24, 2026" },
+    { asin: "B0H6QHN4KZ", title: "The Letter I Never Sent", sub: "", cat: "reflective", price: "$3.00", date: "Jun 26, 2026" },
+    { asin: "B0H6R275Z4", title: "Before Tomorrow Comes", sub: "", cat: "reflective", price: "$3.00", date: "Jun 26, 2026" },
+    { asin: "B0H6S3QWBW", title: "A Page a Day", sub: "", cat: "reflective", price: "$8.00", date: "Jun 27, 2026" },
+    { asin: "B0H6TTZ4HX", title: "The Iron Mind", sub: "Ancient Stoic Wisdom to Master Your Mind & Build Unshakable Discipline", cat: "mindset", price: "$3.50", date: "Jun 28, 2026" },
+    { asin: "B0H6VDH6N8", title: "Dark Psychology & Manipulation", sub: "How to Recognize Toxic People, Gaslighting & Emotional Abuse", cat: "mindset", price: "$4.00", date: "Jun 28, 2026" },
+    { asin: "B0H6XDRZ13", title: "Conqueror the World", sub: "Part 3", cat: "fiction", price: "$3.00", date: "Jun 29, 2026" },
+    { asin: "B0H6XKSM2M", title: "Conquer the World", sub: "Part IV – Breaking Limits", cat: "fiction", price: "$3.00", date: "Jun 29, 2026" },
+    { asin: "B0H7TFDB49", title: "Aura", sub: "The Energy You Carry Into Every Room", cat: "mindset", price: "$3.00", date: "Jul 6, 2026" },
+    { asin: "B0H7VS873C", title: "Rules Are Made to Break", sub: "Thinking for Yourself in a World Built on Defaults", cat: "mindset", price: "$3.00", date: "Jul 7, 2026" },
+    { asin: "B0H7VSGJ6D", title: "Nobody Is Coming to Save You", sub: "A Guide to Becoming Your Own Rescue", cat: "mindset", price: "$3.00", date: "Jul 7, 2026" },
+    { asin: "B0H7VS9TSY", title: "Ye Pal Bhi Beet Jayega", sub: "This Time Will Pass Too — Finding Peace Through Joy & Sorrow", cat: "reflective", price: "$3.20", date: "Jul 7, 2026" },
+    { asin: "B0H8PTK7BF", title: "The Art of Letting Go", sub: "Release What No Longer Serves You", cat: "mindset", price: "$3.00", date: "Jul 10, 2026" },
+    { asin: "B0H8Q3Z2P8", title: "The Power of Silence", sub: "Find Clarity in a Noisy World", cat: "mindset", price: "$3.00", date: "Jul 10, 2026" },
+    { asin: "B0H8Q4H684", title: "The Art of Being Alone", sub: "Embrace Solitude & Discover Yourself", cat: "mindset", price: "$3.00", date: "Jul 10, 2026" },
+    { asin: "B0H8Q5RX1Y", title: "The Power of Positive Thinking", sub: "Transform Your Mind, Transform Your Life", cat: "mindset", price: "$3.00", date: "Jul 10, 2026" },
+    { asin: "B0H8QFCH7C", title: "The Art of Resilience", sub: "Bounce Back Stronger from Life's Challenges", cat: "mindset", price: "$3.00", date: "Jul 10, 2026" },
+    { asin: "B0H95HFKLR", title: "The Art of Discipline", sub: "Master Self-Control & Achieve Your Goals", cat: "mindset", price: "$3.00", date: "Jul 11, 2026" },
+    { asin: "B0H95LPGNN", title: "The Art of Focus", sub: "Stay Present & Achieve More", cat: "mindset", price: "$3.00", date: "Jul 11, 2026" },
+    { asin: "B0H958WTNT", title: "The Art of Patience", sub: "Master the Art of Waiting & Achieve More", cat: "mindset", price: "$3.00", date: "Jul 11, 2026" }
+  ];
+
+  const CAT_LABEL = {
+    fiction: "Fiction Series",
+    mindset: "Mindset & Self-Mastery",
+    reflective: "Reflective Pages",
+    sleep: "Sleep & Recovery",
+    scitech: "Science & Tech"
+  };
+
+  const booksGrid = document.getElementById('booksGrid');
+  const countLive = document.getElementById('countLive');
+
+  function renderBooks() {
+    const q = document.getElementById('searchBox').value.trim().toLowerCase();
+    const activeTab = document.querySelector('.tab.active').dataset.cat;
+    const filtered = BOOKS.filter(b => {
+      const matchesCat = activeTab === 'all' || b.cat === activeTab;
+      const matchesQ = !q || b.title.toLowerCase().includes(q) || (b.sub && b.sub.toLowerCase().includes(q));
+      return matchesCat && matchesQ;
+    });
+    countLive.innerHTML = `<b>${filtered.length}</b> / ${BOOKS.length} titles indexed`;
+    booksGrid.innerHTML = filtered.length ? '' : `<div class="no-results">$ no matches — try clearing the filter</div>`;
+    filtered.forEach(b => {
+      const el = document.createElement('div');
+      el.className = 'book reveal in';
+      el.style.setProperty('--cat-color', `var(--cat-${b.cat})`);
+      el.innerHTML = `
+        <div class="cover"><span class="cat-tag">${CAT_LABEL[b.cat]}</span></div>
+        <div class="body">
+          <h4>${b.title}</h4>
+          ${b.sub ? `<div class="sub">${b.sub}</div>` : ''}
+          <div class="meta">
+            <span>${b.price} · ${b.date}</span>
+            <a href="https://www.amazon.in/dp/${b.asin}" target="_blank" rel="noopener">View ↗</a>
+          </div>
+        </div>
+      `;
+      booksGrid.appendChild(el);
+    });
+  }
+
+  document.getElementById('searchBox').addEventListener('input', renderBooks);
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelector('.tab.active').classList.remove('active');
+      t.classList.add('active');
+      renderBooks();
+    });
+  });
+  renderBooks();
+
+  /* ---------- SCROLL REVEAL ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
